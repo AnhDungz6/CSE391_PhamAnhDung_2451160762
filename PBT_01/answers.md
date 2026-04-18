@@ -90,20 +90,21 @@ Vì vậy:
 
 Trình duyệt render từ trên xuống nên ra đúng bố cục như trên.
 
----
-
-Câu A4:
+Câu A4:(Dựa vào file 05_table_hyperlinks.md)
 
 Sự khác nhau giữa `<thead>`, `<tbody>`, `<tfoot>`
 
 - `<thead>`: Chứa phần tiêu đề bảng (các cột), thường có `<th>`, hiển thị ở trên cùng.
-- `<tbody>`: Chứa dữ liệu chính của bảng, có nhiều hàng `</table>`, là phần quan trọng nhất.
+- `<tbody>`: Chứa dữ liệu chính của bảng, có nhiều hàng `<table>`, là phần quan trọng nhất.
 - `<tfoot>`: Chứa phần tổng kết (tổng tiền, ghi chú...), hiển thị ở dưới cùng (trong code có thể đặt trước nhưng vẫn render dưới).
 
-Không nên dùng `<table>` làm layout vì:
+Không nên dùng `</td>` làm layout vì:
 
 1. Sai semantic (ý nghĩa HTML): Table dùng cho dữ liệu dạng bảng, không phải bố cục. Dùng sai → Google khó hiểu → SEO kém.
-2. Khó bảo trì và mở rộng: Code lồng nhiều `<table>`, `<table>` → rất rối. Sửa layout mất công.
+
+2. Khó bảo trì và mở rộng: Code lồng nhiều `<table>`, `<tr>` → rất rối. Sửa layout mất công.
+
 3. Không responsive tốt: Table khó co giãn theo màn hình (mobile). Trong khi Flexbox / Grid linh hoạt hơn nhiều.
+
 4. Hiệu năng kém hơn: Trình duyệt phải render toàn bộ bảng rồi mới hiển thị.
 ```
