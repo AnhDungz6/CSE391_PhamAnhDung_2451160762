@@ -67,10 +67,8 @@ Trang này bị đánh giá SEO thấp chủ yếu vì HTML không có semantic 
 <footer>
   <p>© 2026 ShopTLU</p>
 </footer>
-Kết quả hiển thị dạng (text-art):
+Câu A3: Kết quả hiển thị dạng (text-art):
 ```
-
----
 
 Hộp 1
 Text A Text B
@@ -78,27 +76,31 @@ Hộp 2
 Text C Text D
 Hộp 3
 
----
+**Giải thích:**
 
-Giải thích:
+`<div>` là block element → luôn chiếm 1 dòng riêng → mỗi “Hộp” nằm một dòng.  
+`<span>` và `<strong>` là inline element → không xuống dòng → nằm cùng hàng.
 
-<div> là block element → luôn chiếm 1 dòng riêng → mỗi “Hộp” nằm một dòng.
-<span> và <strong> là inline element → không xuống dòng → nằm cùng hàng.
-Vì vậy: Text A + Text B nằm chung 1 dòng, Text C + Text D cũng chung 1 dòng.
+Vì vậy:
+
+- Text A + Text B nằm chung 1 dòng.
+- Text C + Text D cũng chung 1 dòng.
+
 Trình duyệt render từ trên xuống nên ra đúng bố cục như trên.
+
+---
 
 Câu A4:
 
-Sự khác nhau giữa <thead>, <tbody>, <tfoot>
+Sự khác nhau giữa `<thead>`, `<tbody>`, `<tfoot>`
 
-<thead>: Chứa phần tiêu đề bảng (các cột), thường có <th>, hiển thị ở trên cùng.
+- `<thead>`: Chứa phần tiêu đề bảng (các cột), thường có `<th>`, hiển thị ở trên cùng.
+- `<tbody>`: Chứa dữ liệu chính của bảng, có nhiều hàng `<tr>`, là phần quan trọng nhất.
+- `<tfoot>`: Chứa phần tổng kết (tổng tiền, ghi chú...), hiển thị ở dưới cùng (trong code có thể đặt trước nhưng vẫn render dưới).
 
-<tbody>: Chứa dữ liệu chính của bảng, có nhiều hàng <tr>, là phần quan trọng nhất.
+Không nên dùng `<table>` làm layout vì:
 
-<tfoot>: Chứa phần tổng kết (tổng tiền, ghi chú...), hiển thị ở dưới cùng (trong code có thể đặt trước nhưng vẫn render dưới).
-
-Không nên dùng <table> làm layout vì:
-1.Sai semantic (ý nghĩa HTML): Table dùng cho dữ liệu dạng bảng, không phải bố cục. Dùng sai → Google khó hiểu → SEO kém.
-2.Khó bảo trì và mở rộng: Code lồng nhiều <tr>, <td> → rất rối. Sửa layout mất công.
-3.Không responsive tốt: Table khó co giãn theo màn hình (mobile). Trong khi Flexbox / Grid linh hoạt hơn nhiều.
-4.Hiệu năng kém hơn: Trình duyệt phải render toàn bộ bảng rồi mới hiển thị
+1. Sai semantic (ý nghĩa HTML): Table dùng cho dữ liệu dạng bảng, không phải bố cục. Dùng sai → Google khó hiểu → SEO kém.
+2. Khó bảo trì và mở rộng: Code lồng nhiều `</table>`, `<table>` → rất rối. Sửa layout mất công.
+3. Không responsive tốt: Table khó co giãn theo màn hình (mobile). Trong khi Flexbox / Grid linh hoạt hơn nhiều.
+4. Hiệu năng kém hơn: Trình duyệt phải render toàn bộ bảng rồi mới hiển thị.
