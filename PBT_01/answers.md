@@ -67,6 +67,9 @@ Trang này bị đánh giá SEO thấp chủ yếu vì HTML không có semantic 
 <footer>
   <p>© 2026 ShopTLU</p>
 </footer>
+```
+
+---
 
 Câu A3:
 
@@ -82,13 +85,17 @@ text
 Giải thích:
 
 `<div>` là block element → luôn chiếm 1 dòng riêng → mỗi “Hộp” nằm một dòng.
+
 `<span>` và `<strong>` là inline element → không xuống dòng → nằm cùng hàng.
 
 Vì vậy:
+
 - Text A + Text B nằm chung 1 dòng.
 - Text C + Text D cũng chung 1 dòng.
 
 Trình duyệt render từ trên xuống nên ra đúng bố cục như trên.
+
+---
 
 Câu A4:(Dựa vào file 05_table_hyperlinks.md)
 
@@ -107,4 +114,7 @@ Không nên dùng `</td>` làm layout vì:
 3. Không responsive tốt: Table khó co giãn theo màn hình (mobile). Trong khi Flexbox / Grid linh hoạt hơn nhiều.
 
 4. Hiệu năng kém hơn: Trình duyệt phải render toàn bộ bảng rồi mới hiển thị.
+
+```
+
 ```
