@@ -117,8 +117,32 @@ Không nên dùng `</td>` làm layout vì:
 
 4. Hiệu năng kém hơn: Trình duyệt phải render toàn bộ bảng rồi mới hiển thị.
 
-```
+**PHẦN B**
 
-```
+Câu B3:
 
-**PHẦN C**
+Lỗi 1: Dòng 1 — `<!DOCTYPE>` sai cú pháp — Sửa thành `<!DOCTYPE html>`
+
+Lỗi 2: Dòng 4 — Thẻ `<title>` chưa đóng — Thêm `</title>`
+
+Lỗi 3: Dòng 5 — `charset="utf8"` sai chuẩn — Sửa thành `charset="UTF-8"`
+
+Lỗi 4: Dòng 9 — Thẻ `<h1>` chưa đóng đúng — Sửa `</h1>`
+
+Lỗi 5: Dòng 13 — Thẻ `<a>` đầu tiên không đóng — Thêm `</a>`
+
+Lỗi 6: Dòng 18 — Thẻ `<img>` thiếu dấu ngoặc kép và thiếu `alt` — Sửa `src="iphone.jpg"` và thêm `alt="iPhone 16 Pro"`
+
+Lỗi 7: Dòng 20 — Thẻ `<b>` đóng sai vị trí — Đặt `</b>` trước `</p>`
+
+Lỗi 8: Dòng 25 — Dùng `<td>` cho tiêu đề bảng (sai semantic) — Đổi thành `<th>`
+
+Lỗi 9: Dòng 33 — Dùng 2 thẻ `<main>` (sai semantic) — Đổi thẻ thứ 2 thành `<aside>`
+
+Lỗi 10: Dòng 38 — Thẻ `<p>` trong `<footer>` chưa đóng — Thêm `</p>`
+
+Lỗi 11: Dòng 2 — Thẻ `<html>` thiếu thuộc tính — Sửa thành `<html lang="vi">`
+
+Lỗi 12: Bảng thiếu cấu trúc semantic — Thêm `<thead>` và `<tbody>`
+
+Lỗi 13: Dùng `<h3>` không hợp lý (sai cấp heading) — Đổi thành `<h2>`
