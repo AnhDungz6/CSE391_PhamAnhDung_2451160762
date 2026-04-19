@@ -84,6 +84,8 @@ Hộp 2
 Text C Text D
 Hộp 3
 
+```
+
 Giải thích:
 
 `<div>` là block element → luôn chiếm 1 dòng riêng → mỗi “Hộp” nằm một dòng.
@@ -146,4 +148,7 @@ Lỗi 11: Dòng 2 — Thẻ `<html>` thiếu thuộc tính — Sửa thành `<ht
 Lỗi 12: Bảng thiếu cấu trúc semantic — Thêm `<thead>` và `<tbody>`
 
 Lỗi 13: Dùng `<h3>` không hợp lý (sai cấp heading) — Đổi thành `<h2>`
+
+```
+
 ```
