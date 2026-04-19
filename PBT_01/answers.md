@@ -76,13 +76,13 @@ Trang này bị đánh giá SEO thấp chủ yếu vì HTML không có semantic 
 Câu A3:
 
 Kết quả hiển thị dạng (text-art):
+
+```text
 Hộp 1
 Text A Text B
 Hộp 2
 Text C Text D
 Hộp 3
-
-text
 
 Giải thích:
 
@@ -146,3 +146,4 @@ Lỗi 11: Dòng 2 — Thẻ `<html>` thiếu thuộc tính — Sửa thành `<ht
 Lỗi 12: Bảng thiếu cấu trúc semantic — Thêm `<thead>` và `<tbody>`
 
 Lỗi 13: Dùng `<h3>` không hợp lý (sai cấp heading) — Đổi thành `<h2>`
+```
