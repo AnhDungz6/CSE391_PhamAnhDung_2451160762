@@ -323,3 +323,11 @@ Câu C1:
 ```
 
 Câu C2:
+
+Quan điểm “chỉ cần dùng `<div>` cho mọi thứ” là không hợp lý vì bỏ qua lợi ích cốt lõi của semantic HTML. Thứ nhất, về SEO, các công cụ tìm kiếm như Google sử dụng cấu trúc HTML để hiểu nội dung trang. Khi dùng các thẻ semantic như `<header>`, `<nav>`, `<article>`, `<section>`, trang web cung cấp ngữ nghĩa rõ ràng, giúp bot xác định nội dung chính và lập chỉ mục hiệu quả hơn. Nếu chỉ dùng `<div>`, thông tin bị “mất ngữ nghĩa”, làm giảm khả năng tối ưu SEO.
+
+Thứ hai, về Accessibility, các trình đọc màn hình như NVDA hoặc JAWS dựa vào semantic HTML để hỗ trợ người khiếm thị điều hướng nhanh giữa các khu vực như menu, nội dung chính hoặc footer. Điều này giúp cải thiện trải nghiệm người dùng và đáp ứng tiêu chuẩn WCAG. Nếu chỉ dùng `<div>`, người dùng phải đọc tuần tự toàn bộ nội dung, gây bất tiện.
+
+Ví dụ cụ thể, trong một trang sản phẩm, việc đặt thông tin chi tiết trong `<article>` và phần gợi ý bên cạnh trong `<aside>` giúp cả công cụ tìm kiếm và screen reader hiểu rõ vai trò từng phần. Nếu thay bằng `<div>`, cần thêm nhiều thuộc tính bổ sung mới đạt hiệu quả tương tự.
+
+Tuy nhiên, `<div>` vẫn phù hợp trong các trường hợp không có ý nghĩa ngữ nghĩa rõ ràng, ví dụ dùng làm container cho layout (Flexbox, Grid) hoặc nhóm phần tử để áp dụng CSS/JavaScript. Vì vậy, semantic HTML không làm phức tạp vấn đề mà giúp code rõ ràng, chuẩn hóa và hiệu quả hơn.
