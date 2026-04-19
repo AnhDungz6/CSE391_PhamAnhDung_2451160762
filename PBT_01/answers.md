@@ -167,6 +167,8 @@ Câu B4:
 
 `<li>` Không nằm trong `<ul>` hoặc `<ol>` – thay vào đó nó nằm trực tiếp trong `<div>`. Trong file: `<div class="startdust-carousel_item-list">` chứa các `<li class="startdust-carousel_item">`. Không có `<ul>` bao ngoài.
 
+2. Không tìm thấy thẻ `<table>` nào trong cả 3 web mà đề cho
+
 3.
 
 - Form tìm kiếm trên trang không có thuộc tính action và method, do đó không submit theo cách truyền thống mà sử dụng JavaScript để xử lý.
@@ -176,3 +178,148 @@ Câu B4:
   `<input ... type="text">` -> ô nhập tìm kiếm
 
   `<button type="button">` -> nút bấm (không phải submit)
+
+**PHẦN C**
+
+Câu C1:
+
+```html
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Khai báo bộ ký tự -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Responsive -->
+    <title>Chi tiết sản phẩm</title>
+    <!-- Tiêu đề trang -->
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <!-- header chứa phần đầu trang -->
+      <nav>
+        <!-- nav dùng cho menu điều hướng -->
+        <ul>
+          <!-- ul vì menu không cần thứ tự -->
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Danh mục</a></li>
+          <li><a href="#">Giỏ hàng</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- main chứa nội dung chính -->
+
+      <!-- BREADCRUMB -->
+      <nav aria-label="breadcrumb">
+        <!-- nav vì đây là điều hướng -->
+        <ol>
+          <!-- ol vì breadcrumb có thứ tự -->
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Điện thoại</a></li>
+          <li>iPhone 16</li>
+        </ol>
+      </nav>
+
+      <!-- PRODUCT DETAIL -->
+      <section>
+        <!-- section nhóm nội dung sản phẩm -->
+
+        <!-- PRODUCT IMAGES -->
+        <section>
+          <!-- section cho khu vực ảnh -->
+          <h2>Ảnh sản phẩm</h2>
+          <!-- heading cho section -->
+          <figure>
+            <!-- figure chứa ảnh -->
+            <img src="#" alt="Ảnh 1" />
+            <!-- ảnh sản phẩm -->
+          </figure>
+          <figure>
+            <img src="#" alt="Ảnh 2" />
+          </figure>
+          <figure>
+            <img src="#" alt="Ảnh 3" />
+          </figure>
+          <figure>
+            <img src="#" alt="Ảnh 4" />
+          </figure>
+          <figure>
+            <img src="#" alt="Ảnh 5" />
+          </figure>
+        </section>
+
+        <!-- PRODUCT INFO -->
+        <section>
+          <!-- section cho thông tin sản phẩm -->
+          <h1>Tên sản phẩm</h1>
+          <!-- h1 vì đây là tiêu đề chính -->
+          <p>Giá</p>
+          <!-- p cho text -->
+          <p>Đánh giá sao</p>
+          <!-- p cho rating -->
+          <p>Mô tả sản phẩm</p>
+          <!-- p cho mô tả -->
+        </section>
+
+        <!-- SPECIFICATIONS -->
+        <section>
+          <!-- section cho thông số -->
+          <h2>Thông số kỹ thuật</h2>
+          <table>
+            <!-- table vì dữ liệu dạng bảng -->
+            <thead>
+              <!-- thead cho tiêu đề -->
+              <tr>
+                <th>Thông số</th>
+                <th>Giá trị</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- tbody cho dữ liệu -->
+              <tr>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- REVIEWS -->
+        <section>
+          <!-- section cho đánh giá -->
+          <h2>Đánh giá</h2>
+          <article>
+            <!-- mỗi review là 1 nội dung độc lập -->
+            <p>Người dùng A</p>
+            <p>Bình luận...</p>
+          </article>
+        </section>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <!-- aside cho nội dung phụ -->
+        <h2>Sản phẩm tương tự</h2>
+        <ul>
+          <!-- danh sách sản phẩm -->
+          <li><a href="#">Sản phẩm 1</a></li>
+          <li><a href="#">Sản phẩm 2</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <!-- footer cho chân trang -->
+      <p>Thông tin bản quyền</p>
+    </footer>
+  </body>
+</html>
+```
+
+Câu C2:
