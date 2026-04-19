@@ -1,4 +1,6 @@
-Câu A1:
+**PHẦN A**
+
+Câu A1:(Dựa vào file 01_introduction_html_universe.md)
 
 Ý 1:
 
@@ -28,7 +30,7 @@ Tab Network dùng để theo dõi toàn bộ HTTP/HTTPS requests giữa trình d
 
 ---
 
-Câu A2:
+Câu A2:(Dựa vào file 04_visible_part_html.md)
 
 Trang này bị đánh giá SEO thấp chủ yếu vì HTML không có semantic (ý nghĩa cấu trúc) -> Google khó hiểu nội dung, ảnh hưởng đến indexing và ranking.
 
@@ -118,3 +120,5 @@ Không nên dùng `</td>` làm layout vì:
 ```
 
 ```
+
+**PHẦN C**
