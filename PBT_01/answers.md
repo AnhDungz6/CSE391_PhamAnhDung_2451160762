@@ -149,6 +149,30 @@ Lỗi 12: Bảng thiếu cấu trúc semantic — Thêm `<thead>` và `<tbody>`
 
 Lỗi 13: Dùng `<h3>` không hợp lý (sai cấp heading) — Đổi thành `<h2>`
 
-```
+Câu B4:
 
-```
+1.
+
+3 Thẻ semantic HTML5(Khoanh màu đỏ):
+
+`<header>` Dòng: `<header class="shopee-top-shopee-top-sticky">` – dùng để chứa thanh điều hướng phía trên.
+
+`<section>` Dòng: `<section class="G9LJcQ" tabindex="-1">` – một khu vực nội dung.
+
+`<section>` Dòng: `<section id="HomePageCarouselBannerSection" aria-label="Banner">` – khu vực banner carousel.
+
+2 Thẻ không dùng đúng semantic(Khoanh màu trắng):
+
+`<div>` Là con trực tiếp của `<ul>` – điều này vi phạm chuẩn HTML vì `<ul>` chỉ được chứa `<li>` làm phần tử con trực tiếp. Trong file: `<ul class="kr8eST">` … rồi ngay sau đó là `<div style="display: contents">` và `<div class="y117jm">`.
+
+`<li>` Không nằm trong `<ul>` hoặc `<ol>` – thay vào đó nó nằm trực tiếp trong `<div>`. Trong file: `<div class="startdust-carousel_item-list">` chứa các `<li class="startdust-carousel_item">`. Không có `<ul>` bao ngoài.
+
+3.
+
+- Form tìm kiếm trên trang không có thuộc tính action và method, do đó không submit theo cách truyền thống mà sử dụng JavaScript để xử lý.
+
+- Input types được dùng:
+
+  `<input ... type="text">` -> ô nhập tìm kiếm
+
+  `<button type="button">` -> nút bấm (không phải submit)
