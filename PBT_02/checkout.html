@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Form đặt hàng</h1>
+    <h2>Giỏ hàng</h2>
+    <table border="1" cellpadding="10">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Sản phẩm</th>
+          <th>Đơn giá</th>
+          <th>Số lượng</th>
+          <th>Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Áo thun</td>
+          <td>200.000</td>
+          <td>2</td>
+          <td>400.000</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Giày</td>
+          <td>500.000</td>
+          <td>1</td>
+          <td>500.000</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Đồng hồ</td>
+          <td>300.000</td>
+          <td>1</td>
+          <td>300.000</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"><strong>Tổng cộng</strong></td>
+          <td>
+            <output>1.200.000</output>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <h3>Tìm sản phẩm</h3>
+    <input list="products" placeholder="Nhập tên sản phẩm..." />
+    <datalist id="products">
+      <option value="Áo thun"></option>
+      <option value="Giày"></option>
+      <option value="Đồng hồ"></option>
+    </datalist>
+
+    <h2>Thanh toán</h2>
+    <form action="#" method="POST">
+      <p>Phương thức thanh toán:</p>
+      <label>
+        <input type="radio" name="payment" value="cod" required />
+        COD
+      </label>
+      <br />
+      <label>
+        <input type="radio" name="payment" value="bank" />
+        Chuyển khoản
+      </label>
+      <br />
+      <label>
+        <input type="radio" name="payment" value="wallet" />
+        Ví điện tử
+      </label>
+
+      <br /><br />
+
+      <label>
+        Mã giảm giá:
+        <input type="text" pattern="SALE[0-9]{4}" placeholder="SALE2026" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Ghi chú:
+        <br />
+        <textarea rows="4" cols="40"></textarea>
+      </label>
+
+      <h2>Thông tin giao hàng</h2>
+
+      <label>
+        Ngày giao:
+        <input type="date" min="2026-04-29" required />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Khung giờ:
+        <select required>
+          <option value="">--Chọn--</option>
+          <option>Sáng 8-12h</option>
+          <option>Chiều 14-18h</option>
+          <option>Tối 18-21h</option>
+        </select>
+      </label>
+
+      <br /><br />
+
+      <label>
+        Thời gian giao (ngày):
+        <input type="range" min="1" max="7" step="1" />
+      </label>
+
+      <br /><br />
+
+      <p>Điểm tích lũy:</p>
+      <progress value="70" max="100"></progress>
+
+      <br /><br />
+
+      <button type="submit" aria-label="Xác nhận đặt hàng">Đặt hàng</button>
+    </form>
+  </body>
+</html>
