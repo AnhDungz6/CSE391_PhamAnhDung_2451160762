@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test HTML5 Validation</title>
+  </head>
+  <body>
+    <h2>Kiểm tra validation HTML5 (bấm Submit)</h2>
+    <form>
+      <!-- Case 1: required + rỗng -->
+      <p>1. required, để trống: <input type="text" required value="" /></p>
+
+      <!-- Case 2: email + "abc" -->
+      <p>2. email, giá trị "abc": <input type="email" value="abc" /></p>
+
+      <!-- Case 3: number, min=1 max=10, giá trị 15 -->
+      <p>
+        3. number (1-10), giá trị 15:
+        <input type="number" min="1" max="10" value="15" />
+      </p>
+
+      <!-- Case 4: pattern 10 số, giá trị "abc123" -->
+      <p>
+        4. pattern [0-9]{10}, giá trị "abc123":
+        <input type="text" pattern="[0-9]{10}" value="abc123" />
+      </p>
+
+      <!-- Case 5: password minlength=8, giá trị "123" -->
+      <p>
+        5. password, minlength=8, giá trị "123":
+        <input type="password" minlength="8" value="123" />
+      </p>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <hr />
+    <p>
+      <strong>Dự đoán:</strong> Cả 5 trường đều không hợp lệ → trình duyệt chặn
+      submit, hiện thông báo lỗi tương ứng.
+    </p>
+    <p>
+      <strong>Thực tế (sau khi bấm Submit):</strong> Các lỗi đúng như đã dự
+      đoán. Trình duyệt sẽ chặn và báo lỗi cho trường đầu tiên (case 1), sau đó
+      lần lượt nếu sửa.
+    </p>
+  </body>
+</html>
