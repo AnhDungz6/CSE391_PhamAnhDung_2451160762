@@ -205,3 +205,70 @@ Biểu đồ doanh thu kèm chú thích nguồn số liệu:
   </figcaption>
 </figure>
 ```
+
+**PHẦN C**
+
+Câu C1:
+
+Lỗi 1: Dòng 2 — Input "Tên" không có `<label>` liên kết, thiếu id và name, vi phạm accessibility và validation.
+Sửa: `<label for="name">Tên:</label> <input type="text" id="name" name="name" required>`
+
+Lỗi 2: Dòng 4 — Input email chỉ dùng placeholder, không có `<label>`, không có name, không thể gửi dữ liệu.
+Sửa: `<label for="email">Email:</label> <input type="email" id="email" name="email" required>`
+
+Lỗi 3: Dòng 6 — Input mật khẩu thiếu `<label>`, thiếu name, không có ràng buộc cần thiết.
+Sửa: `<label for="password">Mật khẩu:</label> <input type="password" id="password" name="password" required>`
+
+Lỗi 4: Dòng 7 — Input nhập lại mật khẩu thiếu `<label>`, thiếu name, không có kiểm tra trùng khớp cơ bản.
+Sửa: `<label for="confirm_password">`Nhập lại mật khẩu:`</label> <input type="password" id="confirm_password" name="confirm_password" required>`
+
+Lỗi 5: Dòng 9 — Input "Phone" không có `<label>` liên kết, dùng type="text" thay vì tel, có giá trị mặc định không nên có.
+Sửa: `<label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" placeholder="Số điện thoại" required>`
+
+Lỗi 6: Dòng 11-14 — Thẻ `<select>` thiếu `<label>`, thiếu name, các `<option>` không có giá trị value.
+Sửa: `<label for="city">`Thành phố:`</label> <select id="city" name="city" required><option value="">`Chọn thành phố`</option><option value="HN">`Hà Nội`</option><option value="HCM">`TP.HCM`</option></select>`
+
+Lỗi 7: Dòng 16-18 — `<label>` chứa chữ "Tôi đồng ý điều khoản" nhưng không có input checkbox đi kèm, không thể thu thập xác nhận.
+Sửa: `<input type="checkbox" id="terms" name="terms" required> <label for="terms">`Tôi đồng ý điều khoản</label>
+
+Lỗi 8: Dòng 1 — Thẻ `<form>` thiếu method và action, không xác định cách gửi dữ liệu, vi phạm best practices.
+Sửa: `<form method="POST" action="/submit">`
+
+Câu C2:
+
+1. Pattern regex cho CMND/CCCD và Số tài khoản
+   CMND/CCCD (12 chữ số):
+   `^\d{12}$`
+
+Giải thích: ^ bắt đầu chuỗi, \d{12} đúng 12 ký số, $ kết thúc chuỗi.
+
+Số tài khoản (10–15 chữ số):
+`^\d{10,15}$`
+
+Giải thích: \d{10,15} từ 10 đến 15 ký số.
+
+Ví dụ áp dụng trong HTML:
+
+```html
+<input type="text" pattern="\d{12}" title="CMND/CCCD gồm 12 chữ số" required>
+
+<input type="text" pattern="\d{10,15}" title="Số tài khoản từ 10 đến 15 chữ số" required>
+```
+2. HTML5 validation chưa đủ an toàn cho ứng dụng ngân hàng.
+
+Vì:
+HTML5 validation chạy hoàn toàn trên trình duyệt (frontend), người dùng có thể dễ dàng tắt JavaScript, chỉnh sửa DOM, hoặc gửi request giả mạo qua công cụ như Postman, Burp Suite. Ứng dụng ngân hàng yêu cầu tính toàn vẹn dữ liệu, chống tấn công và bảo mật nghiêm ngặt, do đó bắt buộc phải có validation ở backend.
+
+3. Ba loại validation mà HTML5 KHÔNG THỂ làm được (phải dùng JavaScript)
+
+Kiểm tra sự trùng khớp giữa hai trường – ví dụ: nhập lại mật khẩu khớp với mật khẩu gốc, xác nhận số tài khoản trùng với số tài khoản đã nhập trước đó.
+
+Kiểm tra tính hợp lệ theo logic nghiệp vụ phức tạp – ví dụ: ngày sinh phải đủ 18 tuổi, mã PIN không được trùng với 3 PIN cũ nhất, số CMND phải đúng với mã tỉnh thành.
+
+Gọi API kiểm tra thời gian thực – ví dụ: email đã tồn tại trong hệ thống hay chưa, số tài khoản có thuộc đúng chi nhánh ngân hàng không.
+
+4. Hai rủi ro bảo mật nếu chỉ validate trên Frontend mà không validate Backend
+
+Tấn công bằng dữ liệu độc hại (Injection, XSS, buffer overflow) – Kẻ tấn công gửi trực tiếp request tới API với dữ liệu không hợp lệ (chuỗi quá dài, mã độc SQL, script) mà không qua frontend, dẫn đến lỗ hổng nghiêm trọng.
+
+Phá vỡ ràng buộc nghiệp vụ, ghi nhận dữ liệu sai – Ví dụ: tạo tài khoản với số CMND 5 chữ số, số tài khoản chứa chữ cái, PIN không phải 6 số – gây sai lệch cơ sở dữ liệu, ảnh hưởng đến đối soát, báo cáo và an toàn giao dịch.
