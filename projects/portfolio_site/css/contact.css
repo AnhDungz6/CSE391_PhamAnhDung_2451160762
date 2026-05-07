@@ -150,3 +150,13 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+.form-group input:valid,
+.form-group textarea:valid {
+  border-color: #22c55e;
+}
+
+.form-group input:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+}
