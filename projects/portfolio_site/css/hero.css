@@ -30,6 +30,7 @@
 
 /* CTA button */
 .cta-button {
+  text-decoration: none;
   padding: 12px 24px;
   background: white;
   color: var(--color-primary);
