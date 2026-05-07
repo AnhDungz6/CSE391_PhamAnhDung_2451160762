@@ -28,11 +28,10 @@ nav a {
   font-size: 1.4rem;
   transition: color 0.3s;
 
-  text-decoration: none; /* bỏ gạch chân */
-  color: inherit; /* lấy màu từ header (xám) */
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Hover underline effect */
 nav a::after {
   content: "";
   position: absolute;
@@ -56,4 +55,67 @@ nav a:hover::after {
 
 .highlight {
   color: gold;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--color-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: var(--color-light);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .menu-toggle:checked ~ nav {
+    max-height: 300px;
+  }
+
+  nav a {
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
 }
