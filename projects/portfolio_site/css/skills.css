@@ -106,9 +106,3 @@
     font-size: 1.5rem;
   }
 }
-
-@media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-}
