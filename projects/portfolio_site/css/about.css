@@ -1,46 +1,48 @@
-/* About Section Styles */
-
-.about {
-  padding: 4rem 2rem;
-  background: var(--bg-light);
+.about-section {
+  padding: 100px 20px;
+  background: white;
 }
 
-.about-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+.container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
   align-items: center;
 }
 
 .about-image {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 300px;
+  height: 300px;
+
+  object-fit: cover;
+  border-radius: 50%;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .about-content h2 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-color);
+  margin-bottom: 20px;
+  color: var(--color-dark);
+}
+
+.about-content .lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: var(--color-primary);
 }
 
 .about-content p {
-  font-size: 1rem;
   line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .about-content h2 {
-    font-size: 1.8rem;
-  }
 }
