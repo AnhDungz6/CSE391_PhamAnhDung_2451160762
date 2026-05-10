@@ -386,3 +386,176 @@ Rule viết sau sẽ thắng.
 
 Nếu .highlight viết sau .text thì màu sẽ là xanh lá.
 Nếu .text viết sau .highlight thì màu sẽ là xanh dương.
+
+## PHẦN C
+
+Câu C1:
+
+-Tính chiều rộng thực tế
+
+Mặc định CSS dùng:
+
+```css
+box-sizing: content-box;
+```
+
+`width` chỉ tính phần content, chưa tính padding và border.
+
+- Sidebar
+
+```css
+width: 300px;
+padding: 20px;
+border: 1px solid;
+```
+
+Chiều rộng thực tế:
+
+```text
+300 + 20*2 + 1*2
+= 342px
+```
+
+- Content
+
+```css
+width: 660px;
+padding: 30px;
+border: 1px solid;
+```
+
+Chiều rộng thực tế:
+
+```text
+660 + 30*2 + 1*2
+= 722px
+```
+
+- Tổng chiều rộng
+
+```text
+342 + 722 = 1064px
+```
+
+Trong khi `.container` chỉ rộng:
+
+```text
+960px
+```
+
+-> Layout bị vỡ vì tổng chiều rộng vượt quá container.
+
+---
+
+- Layout bị vỡ vì
+
+Trong `content-box`:
+
+```css
+width
+```
+
+không bao gồm:
+
+- padding
+- border
+
+Do đó kích thước thực tế lớn hơn giá trị width khai báo.
+
+Float không đủ chỗ để đặt `.content` cạnh `.sidebar`, nên trình duyệt đẩy `.content` xuống dòng mới.
+
+---
+
+- Cách sửa 1 — dùng border-box
+
+debug_layout.css
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 960px;
+  margin: 20px auto;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #dbeafe;
+}
+
+.content {
+  width: 660px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fef3c7;
+}
+```
+
+- Cách sửa 2 — không dùng border-box
+
+Giữ `content-box` nhưng giảm width.
+
+debug_layout.css
+
+```css
+.container {
+  width: 960px;
+  margin: 20px auto;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 258px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #dbeafe;
+}
+
+.content {
+  width: 598px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fef3c7;
+}
+```
+
+Câu C2:
+
+- Sản phẩm A (h2)
+  font-size: 20px
+
+Giải thích: Có hai selector tác động là .container (14px) và .card .title (20px). Theo quy tắc Specificity, selector .card .title (độ ưu tiên: 0,0,2,0) cao hơn so với .container (độ ưu tiên: 0,0,1,0).
+
+- color: green
+
+Giải thích: Mặc dù ID selector #featured .title có độ ưu tiên cao (0,1,1,0) và muốn đặt màu đỏ, nhưng quy tắc .highlight { color: green !important; } sử dụng cờ !important. Trong CSS, !important sẽ ghi đè lên mọi mức độ ưu tiên thông thường.
+
+- Mô tả sản phẩm (p trong card featured)
+  color: blue
+
+Giải thích: Phần tử này khớp với selector .card p. Bên trong selector này có thuộc tính color: inherit;. Thuộc tính này bắt buộc thẻ p phải lấy màu từ cha trực tiếp của nó là .card. Vì .card được định nghĩa color: blue, thẻ p nhận màu xanh.
+
+- Sản phẩm B (h2)
+  font-size: 20px
+
+Giải thích: Tương tự Sản phẩm A, selector .card .title thắng thế nhờ độ ưu tiên.
+
+color: blue
+
+Giải thích: Thẻ h2 này không có class .highlight hay ID #featured. Do đó, nó không có quy tắc màu cụ thể nào nhắm tới. Theo cơ chế Inheritance (Kế thừa), h2 tự động kế thừa màu từ thẻ cha gần nhất có định nghĩa màu là .card (màu xanh).
+
+- Mô tả sản phẩm B (p.highlight)
+  color: green
+
+Giải thích: Thẻ p này có class .highlight. Quy tắc .highlight { color: green !important; } có mức ưu tiên cao nhất, ép phần tử phải hiển thị màu xanh lá cây.

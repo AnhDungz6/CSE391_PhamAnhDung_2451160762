@@ -1,0 +1,22 @@
+.container {
+  width: 960px;
+  margin: 20px auto;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 258px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #dbeafe;
+}
+
+.content {
+  width: 598px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fef3c7;
+}
