@@ -1,4 +1,5 @@
-**PHẦN A**
+## PHẦN A
+
 Câu 1(Dựa vào file 08_introduction_css.md):
 
 1.Inline CSS — viết trực tiếp trong thẻ HTML
@@ -230,3 +231,158 @@ p { color: black !important; }
 
 Vì !important ưu tiên cao hơn
 cả id selector và specificity bình thường.
+
+## PHẦN B
+
+Câu B1:
+
+Các loại selector đã sử dụng trong CSS
+
+1. Element Selector
+
+```css
+body
+table
+footer
+```
+
+2. Class Selector
+
+```css
+.active
+```
+
+3. ID Selector
+
+```css
+#about
+#skills
+#contact
+```
+
+4. Descendant Selector
+
+```css
+header nav ul
+table th
+table td
+```
+
+5. Pseudo-class Selector
+
+```css
+nav a:hover
+tbody tr:nth-child(even)
+tbody tr:hover
+```
+
+Câu B2:
+
+Hộp 1 (content-box)
+
+Chiều rộng thực tế = 350px
+
+Cách tính:
+
+- content = 300px
+- padding trái + phải = 40px
+- border trái + phải = 10px
+
+=> 300 + 40 + 10 = 350px
+
+Hộp 2 (border-box)
+
+Chiều rộng thực tế = 300px
+
+Vì:
+
+- width đã bao gồm:
+  - content
+  - padding
+  - border
+
+Nên kích thước tổng vẫn giữ nguyên là 300px.
+
+Giải thích sự khác biệt
+
+- `content-box`:
+  Width chỉ tính phần content.
+  Padding và border sẽ cộng thêm vào kích thước thật của phần tử.
+
+- `border-box`:
+  Width bao gồm luôn content + padding + border.
+  Kích thước thực tế của phần tử không bị tăng thêm.
+
+Câu B3:
+
+Liệt kê 10 rules + specificity score
+
+| STT | CSS Rule                   | Specificity |
+| --- | -------------------------- | ----------- |
+| 1   | p                          | 0,0,1       |
+| 2   | .text                      | 0,1,0       |
+| 3   | .highlight                 | 0,1,0       |
+| 4   | p.text                     | 0,1,1       |
+| 5   | p.highlight                | 0,1,1       |
+| 6   | .text.highlight            | 0,2,0       |
+| 7   | p.text.highlight           | 0,2,1       |
+| 8   | #demo                      | 1,0,0       |
+| 9   | #demo.text                 | 1,1,0       |
+| 10  | body p#demo.text.highlight | 1,2,1       |
+
+---
+
+Element cuối cùng hiển thị màu gold.
+
+Vì rule:
+
+body p#demo.text.highlight
+
+có specificity cao nhất:
+
+1,2,1
+
+Rule này mạnh hơn tất cả các rules còn lại nên được trình duyệt ưu tiên áp dụng.
+
+Thay đổi thứ tự rules trong CSS file. Kết quả có đổi không? Giải thích.
+
+- Trường hợp specificity khác nhau
+
+Kết quả KHÔNG đổi.
+
+Ví dụ:
+
+p
+
+không thể ghi đè:
+
+#demo
+
+dù p được viết sau trong file CSS.
+
+Vì selector chứa id có specificity mạnh hơn selector thường.
+
+---
+
+- Trường hợp specificity bằng nhau
+
+Kết quả có thể đổi.
+
+Ví dụ:
+
+.text {
+color: blue;
+}
+
+.highlight {
+color: green;
+}
+
+Hai rule đều có specificity:
+
+0,1,0
+
+Rule viết sau sẽ thắng.
+
+Nếu .highlight viết sau .text thì màu sẽ là xanh lá.
+Nếu .text viết sau .highlight thì màu sẽ là xanh dương.

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Model Lab</title>
+    <link rel="stylesheet" href="boxmodel.css" />
+  </head>
+
+  <body>
+    <h1>Content-box vs Border-box</h1>
+
+    <div class="container">
+      <!-- Box 1 -->
+      <div class="box content-box">
+        <h2>Content-box</h2>
+        <p>
+          width: 300px <br />
+          padding: 20px <br />
+          border: 5px solid
+        </p>
+      </div>
+
+      <!-- Box 2 -->
+      <div class="box border-box">
+        <h2>Border-box</h2>
+        <p>
+          width: 300px <br />
+          padding: 20px <br />
+          border: 5px solid
+        </p>
+      </div>
+    </div>
+    <hr />
+
+    <h1>Layout 3 Cột</h1>
+
+    <!-- Không dùng border-box -->
+    <h2>Không dùng border-box</h2>
+
+    <div class="layout normal-layout">
+      <div class="column sidebar">
+        <h3>Sidebar</h3>
+        <p>Width: 250px + padding 15px</p>
+      </div>
+
+      <div class="column content">
+        <h3>Content</h3>
+        <p>Width: 500px + padding 20px</p>
+      </div>
+
+      <div class="column ads">
+        <h3>Ads</h3>
+        <p>Width: 250px + padding 15px</p>
+      </div>
+    </div>
+
+    <!-- Dùng border-box -->
+    <h2>Dùng border-box</h2>
+
+    <div class="layout borderbox-layout">
+      <div class="column sidebar">
+        <h3>Sidebar</h3>
+        <p>Width: 250px đã gồm padding</p>
+      </div>
+
+      <div class="column content">
+        <h3>Content</h3>
+        <p>Width: 500px đã gồm padding</p>
+      </div>
+
+      <div class="column ads">
+        <h3>Ads</h3>
+        <p>Width: 250px đã gồm padding</p>
+      </div>
+    </div>
+  </body>
+</html>

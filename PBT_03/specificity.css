@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 40px;
+}
+
+p {
+  color: black;
+}
+
+.text {
+  color: blue;
+}
+
+.highlight {
+  color: green;
+}
+
+p.text {
+  color: orange;
+}
+
+p.highlight {
+  color: purple;
+}
+
+.text.highlight {
+  color: brown;
+}
+
+p.text.highlight {
+  color: pink;
+}
+
+#demo {
+  color: red;
+}
+
+#demo.text {
+  color: teal;
+}
+
+body p#demo.text.highlight {
+  color: gold;
+  font-size: 40px;
+  font-weight: bold;
+}
