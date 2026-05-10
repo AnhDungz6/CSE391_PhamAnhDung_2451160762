@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positioning Playground</title>
+    <link rel="stylesheet" href="positioning.css" />
+  </head>
+  <body>
+    <header class="fixed-header">
+      <div class="logo">GEMINI LOGO</div>
+      <nav class="nav">
+        <a href="#">Trang chủ</a>
+        <a href="#">Sản phẩm</a>
+        <a href="#">Liên hệ</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <aside class="sticky-sidebar">
+        <h3>Danh mục</h3>
+        <ul>
+          <li>Điện thoại</li>
+          <li>Laptop</li>
+          <li>Phụ kiện</li>
+          <li>Đồng hồ</li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="badge-hot">HOT</div>
+            <div class="product-img"></div>
+            <div class="product-info">
+              <h4>Sản phẩm A</h4>
+              <p>10.000.000đ</p>
+            </div>
+          </div>
+
+          <div
+            style="
+              height: 1500px;
+              background: #f0f0f0;
+              margin-top: 20px;
+              padding: 20px;
+            "
+          >
+            <p>
+              Cuộn xuống để kiểm chứng <strong>Fixed Header</strong> và
+              <strong>Sticky Sidebar</strong>.
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <button class="scroll-top-btn">↑</button>
+  </body>
+</html>

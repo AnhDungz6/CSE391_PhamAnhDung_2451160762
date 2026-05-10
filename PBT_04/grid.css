@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+.main-layout {
+  display: grid;
+
+  grid-template-columns: 200px 1fr 200px;
+
+  grid-template-areas:
+    "header header header"
+    "hero hero hero"
+    "sidebar main ads"
+    "footer footer footer";
+  grid-gap: 20px;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  grid-area: header;
+}
+.hero {
+  grid-area: hero;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.main-content {
+  grid-area: main;
+}
+.ads {
+  grid-area: ads;
+}
+.footer {
+  grid-area: footer;
+}
+
+.header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-content {
+  grid-column: span 2;
+}
+
+.featured-product {
+  grid-column: span 1;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+.filter-group {
+  margin-top: 20px;
+}
+.filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.product-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: 0.3s;
+}
+.card:hover {
+  border-color: #3498db;
+  transform: scale(1.02);
+}
+
+.ads {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+.ad-placeholder img {
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.footer {
+  background-color: #34495e;
+  color: white;
+  text-align: center;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+@media (max-width: 992px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "hero"
+      "main"
+      "sidebar"
+      "ads"
+      "footer";
+  }
+}

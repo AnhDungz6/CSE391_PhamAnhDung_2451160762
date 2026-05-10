@@ -1,6 +1,6 @@
 ## Phần A
 
-Câu 1:
+Câu 1(Dựa vào file tuan_2_css_core/12_css_positioning.md):
 
 Bảng So Sánh Các Giá Trị CSS Position
 
@@ -91,3 +91,5 @@ Bố cục: 3 hàng. Hai hàng đầu đầy đủ, hàng cuối chỉ có 1 ite
 ```
 
 ## Phần B
+
+Câu B1:
