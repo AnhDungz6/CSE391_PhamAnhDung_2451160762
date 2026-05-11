@@ -1,0 +1,513 @@
+body {
+  font-family: $font-primary;
+  background-color: $bg-color;
+  color: $text-color;
+  font-size: 14px;
+  line-height: 1.6;
+
+  @include respond-to(tablet) {
+    font-size: 16px;
+  }
+
+  @include respond-to(desktop) {
+    font-size: 18px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: $white-color;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0, 150, 255, 0.15);
+
+  @include respond-to(tablet) {
+    padding: $spacing-md $spacing-lg;
+  }
+
+  @include respond-to(desktop) {
+    padding: $spacing-md $spacing-xl;
+  }
+}
+
+.logo {
+  @include flex-center;
+  font-family: $font-heading;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  gap: $spacing-xs;
+
+  .logo-icon {
+    font-size: 22px;
+    animation: spin 4s linear infinite;
+  }
+
+  .logo-accent {
+    color: $primary-color;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 22px;
+  }
+
+  @include respond-to(desktop) {
+    font-size: 24px;
+  }
+}
+
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  background: none;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  color: $primary-color;
+  padding: 4px 10px;
+  border-radius: $radius-sm;
+  transition: $transition-base;
+
+  &:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: $primary-color;
+  }
+
+  @include respond-to(desktop) {
+    display: none;
+  }
+}
+
+.nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #16213e, #1a1a2e);
+  flex-direction: column;
+  padding: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  &.nav-open {
+    display: flex;
+  }
+
+  a {
+    color: #c9d1d9;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: $transition-base;
+    font-weight: 500;
+    font-size: 15px;
+
+    &:hover {
+      background: rgba(0, 212, 255, 0.08);
+      color: $primary-color;
+      padding-left: $spacing-lg;
+    }
+  }
+
+  @include respond-to(desktop) {
+    display: flex;
+    position: static;
+    background: none;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+
+    a {
+      padding: $spacing-sm $spacing-md;
+      border-bottom: none;
+      font-size: 14px;
+      border-radius: $radius-sm;
+
+      &:hover {
+        padding-left: $spacing-md;
+        background: rgba(0, 212, 255, 0.12);
+      }
+    }
+  }
+}
+
+.container {
+  padding: $spacing-md;
+  max-width: $container-max-width;
+  margin: 0 auto;
+
+  @include respond-to(desktop) {
+    display: grid;
+    grid-template-columns: 230px 1fr 220px;
+    gap: 24px;
+    padding: 24px $spacing-xl;
+    align-items: start;
+  }
+
+  @include respond-to(wide) {
+    padding: 28px 60px;
+  }
+}
+
+.sidebar {
+  display: none;
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 15px;
+    margin-bottom: 14px;
+    color: $primary-color;
+  }
+
+  @include respond-to(tablet) {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    @include panel;
+    padding: $spacing-md 20px;
+    margin-bottom: 20px;
+
+    h3 {
+      margin-bottom: 0;
+    }
+  }
+
+  @include respond-to(desktop) {
+    flex-direction: column;
+    align-items: stretch;
+    position: sticky;
+    top: 80px;
+    margin-bottom: 0;
+
+    h3 {
+      margin-bottom: $spacing-md;
+    }
+  }
+}
+
+.filter-group {
+  margin-bottom: 14px;
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    @include text-uppercase;
+    color: $muted-color;
+    margin-bottom: $spacing-xs;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: $radius-md;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    background-color: $surface-color;
+    color: $text-color;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+    }
+  }
+
+  @include respond-to(tablet) {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    label {
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+
+    select {
+      width: auto;
+      min-width: 140px;
+    }
+  }
+
+  @include respond-to(desktop) {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 14px;
+
+    label {
+      margin-bottom: $spacing-xs;
+    }
+
+    select {
+      width: 100%;
+      min-width: auto;
+    }
+  }
+}
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.product-card {
+  @include panel;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.35s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.25);
+    @include card-shadow;
+
+    img {
+      transform: scale(1.05);
+    }
+  }
+
+  &.featured {
+    border-color: rgba(255, 77, 109, 0.45);
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: #f0f0f0;
+    padding: 10px;
+    transition: transform 0.4s ease;
+
+    @include respond-to(tablet) {
+      height: 220px;
+    }
+
+    @include respond-to(desktop) {
+      height: 180px;
+    }
+
+    @include respond-to(wide) {
+      height: 200px;
+    }
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: linear-gradient(135deg, $primary-color, #0096c7);
+    color: $black-color;
+    font-family: $font-heading;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: $radius-sm;
+    letter-spacing: 1px;
+    z-index: 2;
+
+    &.badge-rg {
+      background: linear-gradient(135deg, $accent-color, #ff8c00);
+    }
+
+    &.badge-mg {
+      background: linear-gradient(135deg, $secondary-color, #c9184a);
+      color: $white-color;
+    }
+  }
+
+  .card-body {
+    padding: $spacing-md;
+    text-align: center;
+
+    h3 {
+      font-family: $font-heading;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: $spacing-xs;
+      color: $text-color;
+
+      @include respond-to(tablet) {
+        font-size: 15px;
+      }
+
+      @include respond-to(desktop) {
+        font-size: 13px;
+      }
+
+      @include respond-to(wide) {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.card-grade {
+  font-size: 12px;
+  color: $muted-color;
+  @include text-uppercase;
+  margin-bottom: $spacing-sm;
+}
+
+.card-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: 12px;
+
+  @include respond-to(tablet) {
+    font-size: 20px;
+  }
+
+  @include respond-to(desktop) {
+    font-size: 17px;
+  }
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, $primary-color, #0096c7);
+  color: $black-color;
+  font-weight: 700;
+  border: none;
+  padding: 10px 20px;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: $transition-base;
+  width: 100%;
+
+  &:hover {
+    background: linear-gradient(135deg, #33e0ff, #00b4d8);
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.35);
+    transform: translateY(-1px);
+  }
+
+  @include respond-to(desktop) {
+    font-size: 12px;
+    padding: $spacing-sm 14px;
+  }
+}
+
+.ads {
+  display: none;
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 14px;
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    font-size: 13px;
+    color: $muted-color;
+    margin-bottom: $spacing-xs;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    margin: $spacing-md 0;
+  }
+
+  @include respond-to(desktop) {
+    display: block;
+    @include panel;
+    padding: 20px;
+    position: sticky;
+    top: 80px;
+  }
+}
+
+.ads-highlight {
+  font-family: $font-heading;
+  font-size: 22px;
+  font-weight: 900;
+  color: $secondary-color;
+  margin-bottom: 4px;
+}
+
+.footer {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: $muted-color;
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+  font-size: 13px;
+
+  .footer-brand {
+    font-family: $font-heading;
+    font-size: 16px;
+    color: $text-color;
+    font-weight: 700;
+    margin-bottom: $spacing-sm;
+    letter-spacing: 2px;
+  }
+
+  .footer-links {
+    margin-top: 10px;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #33e0ff;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    font-size: 14px;
+    padding: 30px;
+
+    .footer-brand {
+      font-size: 18px;
+    }
+  }
+
+  @include respond-to(desktop) {
+    font-size: 15px;
+    padding: 36px $spacing-xl;
+
+    .footer-brand {
+      font-size: 20px;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="GundamShop - Cửa hàng mô hình Gundam chính hãng Bandai. HG, RG, MG, PG đầy đủ các dòng."
+    />
+    <title>GundamShop — Mô Hình Gundam Chính Hãng</title>
+    <link rel="stylesheet" href="responsive.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+      <div class="logo">
+        <span class="logo-icon">⚙</span> GUNDAM<span class="logo-accent"
+          >SHOP</span
+        >
+      </div>
+
+      <!-- Hamburger button - chỉ hiện trên mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        ☰
+      </button>
+
+      <!-- Navigation - ẩn trên mobile, hiện trên desktop -->
+      <nav class="nav" id="nav">
+        <a href="#">Trang Chủ</a>
+        <a href="#">Sản Phẩm</a>
+        <a href="#">High Grade</a>
+        <a href="#">Master Grade</a>
+        <a href="#">Liên Hệ</a>
+      </nav>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <div class="container" id="main-container">
+      <!-- SIDEBAR — ẩn trên mobile, dropdown trên tablet, cột trên desktop -->
+      <aside class="sidebar" id="sidebar">
+        <h3>🔍 Bộ Lọc</h3>
+
+        <div class="filter-group">
+          <label for="filter-grade">Phân Loại</label>
+          <select id="filter-grade">
+            <option>Tất Cả</option>
+            <option>HG (High Grade)</option>
+            <option>RG (Real Grade)</option>
+            <option>MG (Master Grade)</option>
+            <option>PG (Perfect Grade)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-price">Mức Giá</label>
+          <select id="filter-price">
+            <option>Tất Cả</option>
+            <option>Dưới 500.000₫</option>
+            <option>500.000₫ – 1.000.000₫</option>
+            <option>Trên 1.000.000₫</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-series">Dòng Phim</label>
+          <select id="filter-series">
+            <option>Tất Cả</option>
+            <option>UC (Universal Century)</option>
+            <option>Seed</option>
+            <option>00</option>
+            <option>Iron-Blooded Orphans</option>
+            <option>Witch from Mercury</option>
+          </select>
+        </div>
+      </aside>
+
+      <!-- PRODUCT GRID — 1 cột mobile, 2 cột tablet, 4 cột desktop -->
+      <main class="products" id="product-grid">
+        <!-- Card 1 -->
+        <div class="product-card" id="product-1">
+          <div class="card-badge">HG</div>
+          <img
+            src="https://jumpichiban.com/cdn/shop/files/item_0000015549_X2OCm8Gk_08.jpg?v=1763102671"
+            alt="HG RX-78-2 Gundam"
+          />
+          <div class="card-body">
+            <h3>RX-78-2 Gundam</h3>
+            <p class="card-grade">HG 1/144</p>
+            <p class="card-price">350.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="product-card" id="product-2">
+          <div class="card-badge badge-rg">RG</div>
+          <img
+            src="https://images-na.ssl-images-amazon.com/images/I/617+v-PRNwL.jpg"
+            alt="RG Unicorn Gundam"
+          />
+          <div class="card-body">
+            <h3>Unicorn Gundam</h3>
+            <p class="card-grade">RG 1/144</p>
+            <p class="card-price">680.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="product-card" id="product-3">
+          <div class="card-badge badge-mg">MG</div>
+          <img
+            src="https://i.pinimg.com/736x/4d/05/29/4d05296b72e9ee2edbff1812cd351095.jpg"
+            alt="MG Freedom Gundam"
+          />
+          <div class="card-body">
+            <h3>Freedom Gundam</h3>
+            <p class="card-grade">MG 1/100</p>
+            <p class="card-price">1.200.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="product-card" id="product-4">
+          <div class="card-badge">HG</div>
+          <img
+            src="https://i.pinimg.com/1200x/a8/8d/25/a88d2530571054e956cafac6fffdd0ca.jpg"
+            alt="HG Barbatos Lupus Rex"
+          />
+          <div class="card-body">
+            <h3>Barbatos Lupus Rex</h3>
+            <p class="card-grade">HG 1/144</p>
+            <p class="card-price">420.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="product-card" id="product-5">
+          <div class="card-badge badge-rg">RG</div>
+          <img
+            src="https://i.pinimg.com/736x/5e/33/09/5e330999045876eab91fb52767c797ab.jpg"
+            alt="RG Wing Gundam Zero EW"
+          />
+          <div class="card-body">
+            <h3>Wing Gundam Zero EW</h3>
+            <p class="card-grade">RG 1/144</p>
+            <p class="card-price">750.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="product-card" id="product-6">
+          <div class="card-badge badge-mg">MG</div>
+          <img
+            src="https://i.pinimg.com/736x/9a/6b/3b/9a6b3bf77b9ce296614667d1ceb53b6c.jpg"
+            alt="MG Sazabi Ver.Ka"
+          />
+          <div class="card-body">
+            <h3>Sazabi Ver.Ka</h3>
+            <p class="card-grade">MG 1/100</p>
+            <p class="card-price">1.850.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="product-card" id="product-7">
+          <div class="card-badge">HG</div>
+          <img
+            src="https://i.pinimg.com/1200x/2d/d8/89/2dd88943f3658ace351dffe06e5f8890.jpg"
+            alt="HG Aerial Gundam"
+          />
+          <div class="card-body">
+            <h3>Gundam Aerial</h3>
+            <p class="card-grade">HG 1/144</p>
+            <p class="card-price">380.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="product-card" id="product-8">
+          <div class="card-badge badge-rg">RG</div>
+          <img
+            src="https://i.pinimg.com/736x/36/f3/a4/36f3a4ce6237d6d3482d3ff40e4b4b3e.jpg"
+            alt="RG Nu Gundam"
+          />
+          <div class="card-body">
+            <h3>Nu Gundam</h3>
+            <p class="card-grade">RG 1/144</p>
+            <p class="card-price">950.000₫</p>
+            <button class="btn-buy">🛒 Mua Ngay</button>
+          </div>
+        </div>
+      </main>
+
+      <!-- ADS BAR — chỉ hiện trên desktop -->
+      <aside class="ads" id="ads-bar">
+        <h3>🔥 Hot Deal</h3>
+        <p class="ads-highlight">GIẢM 30%</p>
+        <p>Tất cả MG Ver.Ka trong tuần này!</p>
+        <hr />
+        <h3>📦 Hàng Mới Về</h3>
+        <p>RG God Gundam</p>
+        <p>MG Eclipse Gundam</p>
+        <hr />
+        <h3>🎁 Ưu Đãi</h3>
+        <p>Mua 2 HG tặng kèm Gundam Marker!</p>
+      </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+      <div class="footer-content">
+        <p class="footer-brand">
+          ⚙ GUNDAM<span class="logo-accent">SHOP</span>
+        </p>
+        <p>© 2026 AnhDung — Phạm Anh Dũng | CSE391</p>
+        <p class="footer-links">
+          <a href="#">Facebook</a> · <a href="#">Instagram</a> ·
+          <a href="#">Shopee</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const nav = document.getElementById("nav");
+
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("nav-open");
+      });
+    </script>
+  </body>
+</html>

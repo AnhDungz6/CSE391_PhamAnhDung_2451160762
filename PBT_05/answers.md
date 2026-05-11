@@ -367,4 +367,64 @@ Câu A4:
    }
    ```
 
-   Browser chỉ đọc file `.css` sau khi compile.
+## PHẦN B
+
+Câu B3:
+
+SCSS Refactor responsive.css
+
+- Variables: tao tren 8 bien trong scss/\_variables.scss.
+- Nesting: viet nested blocks trong scss/\_components.scss.
+- Mixins: tao respond-to($breakpoint), flex-center, card-shadow trong scss/\_mixins.scss.
+- Partial & Import: import variables, mixins, components trong scss/style.scss.
+- Compile: bien dich scss/style.scss thanh style.css.
+
+SCSS Compile Command
+
+Cài Sass
+
+npm install -g sass
+
+Compile SCSS → CSS
+
+npx sass scss/style.scss style.css
+
+Watch mode (tự compile khi save)
+
+npx sass --watch scss/style.scss style.css
+
+## PHẦN c
+
+Câu C1:
+
+1. Mobile (375px) - Tối ưu cho thao tác chạm (Touch)
+
+Navigation: Thanh menu bên trái (Sidebar) biến mất hoàn toàn. Thay vào đó là thanh điều hướng dưới cùng (Bottom Navigation) với các icon: Trang chủ, Shorts, Đăng ký, Thư viện. Nút tìm kiếm rút gọn thành một icon kính lúp ở góc trên.
+
+Lưới Content: Chuyển về 1 cột. Mỗi video chiếm trọn chiều ngang màn hình. Thumbnail (hình thu nhỏ) được phóng lớn tối đa để người dùng dễ quan sát trên màn hình nhỏ.
+
+Elements bị ẩn: Các tính năng phụ như "Phát tất cả", danh sách danh mục chi tiết ở Sidebar, và các nút thao tác nhanh (như Download, Clip) thường bị ẩn vào dấu ba chấm.
+
+Font size: Tiêu đề video thường hiển thị 2 dòng rồi bị cắt bớt (truncate). Kích thước chữ khoảng 14px để đảm bảo không chiếm quá nhiều diện tích.
+
+2. Tablet (768px) - Tận dụng chiều ngang
+   Navigation: Thanh Menu bên trái thu gọn lại thành dạng Mini-Sidebar (chỉ hiển thị icon và chữ nhỏ bên dưới, không chiếm diện tích nội dung chính).
+
+Lưới Content: Chuyển sang dạng 2 hoặc 3 cột tùy vào hướng xoay của máy tính bảng. Khoảng cách giữa các video (Gutter) bắt đầu xuất hiện rõ rệt.
+
+Elements thay đổi: Thanh lọc chủ đề (Topics bar) ở phía trên bắt đầu hiển thị nhiều lựa chọn hơn và có thể vuốt ngang.
+
+Font size: Giữ ở mức tiêu chuẩn 14px - 15px, nhưng không gian hiển thị tiêu đề video dài hơn so với Mobile.
+
+3. Desktop (1440px) - Trải nghiệm đa nhiệm
+   Navigation: Menu bên trái hiển thị đầy đủ (Full Sidebar) với các nhóm: Đăng ký, Khám phá, Tiện ích khác. Khi nhấn vào icon Hamburger, Menu này có thể thu gọn để mở rộng không gian video.
+
+Lưới Content: Hiển thị từ 4 đến 6 cột. Các video được sắp xếp dày đặc nhưng khoa học, tận dụng tối đa chiều rộng màn hình lớn.
+
+Elements hiển thị:
+
+Tính năng xem trước video khi di chuột (Hover Preview) hoạt động mạnh mẽ.
+
+Hiển thị đầy đủ các nút chức năng cạnh Avatar người dùng (Tạo video, Thông báo).
+
+Font size: Tiêu đề video rõ ràng, font size khoảng 16px. Khoảng cách giữa các phần tử (White space) rộng rãi giúp giao diện không bị rối mắt dù có rất nhiều nội dung.

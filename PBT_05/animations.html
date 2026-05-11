@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="GundamShop - demo CSS transitions va animations cho bai B2."
+    />
+    <title>GundamShop - CSS Transitions & Animations</title>
+    <link rel="stylesheet" href="animations.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">⚙</span>
+        GUNDAM<span class="logo-accent">SHOP</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#">Trang chủ</a>
+        <a href="#">Sản phẩm</a>
+        <a href="#">High Grade</a>
+        <a href="#">Master Grade</a>
+        <a href="#">Liên hệ</a>
+      </nav>
+    </header>
+
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <p class="eyebrow">Bài B2 - CSS Transitions & Animations</p>
+        <h1>Shopee Gundam Model Kits</h1>
+        <p>
+          Trang sản phẩm mô phỏng shop Gundam với hover card, hover button,
+          zoom ảnh, spinner loading và hiệu ứng fade-in bằng CSS.
+        </p>
+      </div>
+
+      <div class="loader-box" aria-label="Loading">
+        <div class="spinner"></div>
+        <span>Đang tải deal mới...</span>
+      </div>
+    </section>
+
+    <main class="container">
+      <aside class="sidebar fade-in">
+        <h2>Bộ lọc</h2>
+
+        <label for="grade">Phân loại</label>
+        <select id="grade">
+          <option>Tất cả</option>
+          <option>HG 1/144</option>
+          <option>RG 1/144</option>
+          <option>MG 1/100</option>
+          <option>PG 1/60</option>
+        </select>
+
+        <label for="price">Mức giá</label>
+        <select id="price">
+          <option>Tất cả</option>
+          <option>Dưới 500.000đ</option>
+          <option>500.000đ - 1.000.000đ</option>
+          <option>Trên 1.000.000đ</option>
+        </select>
+
+        <label for="series">Dòng phim</label>
+        <select id="series">
+          <option>Tất cả</option>
+          <option>Universal Century</option>
+          <option>Gundam Seed</option>
+          <option>Gundam 00</option>
+          <option>Witch from Mercury</option>
+        </select>
+      </aside>
+
+      <section class="products" aria-label="Danh sach san pham Gundam">
+        <article class="product-card fade-in">
+          <span class="card-badge">HG</span>
+          <div class="image-wrap">
+            <img
+              src="https://jumpichiban.com/cdn/shop/files/item_0000015549_X2OCm8Gk_08.jpg?v=1763102671"
+              alt="HG RX-78-2 Gundam"
+            />
+          </div>
+          <div class="card-body">
+            <h3>RX-78-2 Gundam</h3>
+            <p class="card-grade">HG 1/144</p>
+            <p class="card-price">350.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge badge-rg">RG</span>
+          <div class="image-wrap">
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/617+v-PRNwL.jpg"
+              alt="RG Unicorn Gundam"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Unicorn Gundam</h3>
+            <p class="card-grade">RG 1/144</p>
+            <p class="card-price">680.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge badge-mg">MG</span>
+          <div class="image-wrap">
+            <img
+              src="https://i.pinimg.com/736x/4d/05/29/4d05296b72e9ee2edbff1812cd351095.jpg"
+              alt="MG Freedom Gundam"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Freedom Gundam</h3>
+            <p class="card-grade">MG 1/100</p>
+            <p class="card-price">1.200.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge">HG</span>
+          <div class="image-wrap">
+            <img
+              src="https://i.pinimg.com/1200x/a8/8d/25/a88d2530571054e956cafac6fffdd0ca.jpg"
+              alt="HG Barbatos Lupus Rex"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Barbatos Lupus Rex</h3>
+            <p class="card-grade">HG 1/144</p>
+            <p class="card-price">420.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge badge-rg">RG</span>
+          <div class="image-wrap">
+            <img
+              src="https://i.pinimg.com/736x/5e/33/09/5e330999045876eab91fb52767c797ab.jpg"
+              alt="RG Wing Gundam Zero EW"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Wing Gundam Zero EW</h3>
+            <p class="card-grade">RG 1/144</p>
+            <p class="card-price">750.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge badge-mg">MG</span>
+          <div class="image-wrap">
+            <img
+              src="https://i.pinimg.com/736x/9a/6b/3b/9a6b3bf77b9ce296614667d1ceb53b6c.jpg"
+              alt="MG Sazabi Ver.Ka"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Sazabi Ver.Ka</h3>
+            <p class="card-grade">MG 1/100</p>
+            <p class="card-price">1.850.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge">HG</span>
+          <div class="image-wrap">
+            <img
+              src="https://i.pinimg.com/1200x/2d/d8/89/2dd88943f3658ace351dffe06e5f8890.jpg"
+              alt="HG Gundam Aerial"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Gundam Aerial</h3>
+            <p class="card-grade">HG 1/144</p>
+            <p class="card-price">380.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+
+        <article class="product-card fade-in">
+          <span class="card-badge badge-rg">RG</span>
+          <div class="image-wrap">
+            <img
+              src="https://i.pinimg.com/736x/36/f3/a4/36f3a4ce6237d6d3482d3ff40e4b4b3e.jpg"
+              alt="RG Nu Gundam"
+            />
+          </div>
+          <div class="card-body">
+            <h3>Nu Gundam</h3>
+            <p class="card-grade">RG 1/144</p>
+            <p class="card-price">950.000đ</p>
+            <button class="btn-buy">Mua ngay</button>
+          </div>
+        </article>
+      </section>
+
+      <aside class="ads fade-in">
+        <h2>Hot deal</h2>
+        <p class="ads-highlight">Giảm 30%</p>
+        <p>Áp dụng cho các mẫu MG Ver.Ka trong tuần này.</p>
+        <hr />
+        <h2>Hàng mới</h2>
+        <p>RG God Gundam</p>
+        <p>MG Eclipse Gundam</p>
+        <hr />
+        <h2>Ưu đãi</h2>
+        <p>Mua 2 HG tặng kèm Gundam Marker.</p>
+      </aside>
+    </main>
+
+    <footer class="footer fade-in">
+      <p class="footer-brand">GUNDAM<span class="logo-accent">SHOP</span></p>
+      <p>© 2026 Phạm Anh Dũng | CSE391</p>
+    </footer>
+  </body>
+</html>
