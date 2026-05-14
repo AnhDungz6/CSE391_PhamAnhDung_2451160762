@@ -1,0 +1,171 @@
+.portfolio-section {
+  padding: 100px 20px;
+  background: white;
+}
+
+.portfolio-section h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: var(--color-dark);
+}
+
+/* FILTERS */
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  margin-bottom: 50px;
+}
+
+.filter-btn {
+  background: transparent;
+
+  border: 2px solid var(--color-primary);
+
+  padding: 10px 24px;
+
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* GRID */
+.portfolio-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+/* ITEM */
+.portfolio-item {
+  position: relative;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+/* IMAGE */
+.portfolio-item img {
+  width: 100%;
+
+  aspect-ratio: 4/3;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.1);
+}
+
+/* OVERLAY */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(30, 41, 59, 0.95) 0%,
+    rgba(30, 41, 59, 0.6) 50%,
+    transparent 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 24px;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-overlay h3 {
+  color: white;
+
+  margin-bottom: 8px;
+}
+
+.portfolio-overlay p {
+  color: #e2e8f0;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.95);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all 0.3s ease;
+
+  z-index: 2000;
+}
+
+.lightbox img {
+  width: 80%;
+  max-width: 900px;
+
+  border-radius: 20px;
+}
+
+.lightbox:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-close {
+  position: absolute;
+
+  top: 20px;
+  right: 30px;
+
+  font-size: 3rem;
+
+  color: white;
+
+  text-decoration: none;
+}
