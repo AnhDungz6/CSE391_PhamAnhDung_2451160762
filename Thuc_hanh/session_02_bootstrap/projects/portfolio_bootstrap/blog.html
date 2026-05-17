@@ -1,19 +1,65 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog</title>
+    <title>About — Anh Dũng</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="css/custom-theme.css" />
     <link rel="stylesheet" href="css/blog.css" />
     <link rel="stylesheet" href="css/comments.css" />
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <nav
+      class="navbar navbar-expand-lg navbar-custom fixed-top"
+      id="aboutNavbar"
+    >
+      <div class="container-fluid px-4">
+        <a
+          class="navbar-brand"
+          href="index.html"
+          style="
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+          "
+          >ANH DŨNG</a
+        >
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="aboutNavMenu"
+        >
+          <ul class="navbar-nav gap-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#work">Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="blog.html">About</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Calendly</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="about-hero">
+        <div class="container">
+          <h1>About</h1>
+          <p>What drives my passion for design.</p>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
