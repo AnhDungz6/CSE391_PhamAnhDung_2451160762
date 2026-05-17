@@ -1,1 +1,101 @@
-/* Blog CSS */
+.navbar-custom {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 0;
+}
+.navbar-custom .navbar-brand {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--color-text-primary);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.navbar-custom .nav-link {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color 150ms ease;
+}
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+  color: var(--color-text-primary);
+}
+.about-hero {
+  padding: 8rem 0 2rem;
+  text-align: center;
+}
+.about-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+.about-hero p {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+}
+.about-photo {
+  width: 100%;
+  max-width: 700px;
+  margin: 2.5rem auto 0.5rem;
+  display: block;
+  border-radius: 0;
+}
+.about-photo-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 3rem;
+}
+.about-text-block {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+.about-text-block p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+.social-about {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.social-about a {
+  color: var(--color-text-primary);
+  font-size: 1.2rem;
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+.social-about a:hover {
+  color: var(--bs-primary);
+  transform: translateY(-2px);
+}
+.btn-email {
+  display: inline-block;
+  padding: 0.65rem 1.8rem;
+  border: 2px solid var(--color-text-primary);
+  border-radius: 50px;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 200ms ease;
+}
+.btn-email:hover {
+  background: var(--color-text-primary);
+  color: #fff;
+}
+.footer-line {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.8rem;
+  color: #000;
+}
