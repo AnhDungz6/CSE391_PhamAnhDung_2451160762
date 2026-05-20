@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý sinh viên</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Quản lý sinh viên</h1>
+        <button id="btnAdd">+ Thêm sinh viên</button>
+      </header>
+      <div id="statistics">
+        <div class="stat-box">
+          <span class="stat-label">Tổng sinh viên</span>
+          <span class="stat-value" id="totalCount">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Điểm TB lớp</span>
+          <span class="stat-value" id="avgScore">0</span>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>MSSV</th>
+            <th>Họ Tên</th>
+            <th>Ngày sinh</th>
+            <th>Lớp</th>
+            <th>GPA</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <tr>
+            <td>2451160762</td>
+            <td>Phạm Anh Dũng</td>
+            <td>12/10/2006</td>
+            <td>A1</td>
+            <td>3.8</td>
+            <td>abc@gmail.com</td>
+            <td>
+              <button class="editBtn">Sửa</button>
+              <button class="deleteBtn">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2451160762</td>
+            <td>Phạm Anh Dũng</td>
+            <td>12/10/2006</td>
+            <td>A1</td>
+            <td>3.8</td>
+            <td>abc@gmail.com</td>
+            <td>
+              <button class="editBtn">Sửa</button>
+              <button class="deleteBtn">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2451160762</td>
+            <td>Phạm Anh Dũng</td>
+            <td>12/10/2006</td>
+            <td>A1</td>
+            <td>3.8</td>
+            <td>abc@gmail.com</td>
+            <td>
+              <button class="editBtn">Sửa</button>
+              <button class="deleteBtn">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2451160762</td>
+            <td>Phạm Anh Dũng</td>
+            <td>12/10/2006</td>
+            <td>A1</td>
+            <td>3.8</td>
+            <td>abc@gmail.com</td>
+            <td>
+              <button class="editBtn">Sửa</button>
+              <button class="deleteBtn">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2451160763</td>
+            <td>Nguyễn Văn A</td>
+            <td>1/1/2006</td>
+            <td>A2</td>
+            <td>3.5</td>
+            <td>abcde@gmail.com</td>
+            <td>
+              <button class="editBtn">Sửa</button>
+              <button class="deleteBtn">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="popup">
+      <div id="formBox">
+        <h2 id="formTitle">Thêm sinh viên</h2>
+        <input id="maSV" placeholder="Mã sinh viên" />
+        <input id="hoTen" placeholder="Họ và tên" />
+        <input id="ngaySinh" type="date" />
+        <input id="lop" placeholder="Lớp" />
+        <input
+          id="diemTB"
+          type="number"
+          placeholder="Điểm TB"
+          step="0.1"
+          min="0"
+          max="10"
+        />
+        <input id="email" type="email" placeholder="Email" />
+        <div class="form-actions">
+          <button id="btnSave">Lưu</button>
+          <button id="btnClose">Hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
