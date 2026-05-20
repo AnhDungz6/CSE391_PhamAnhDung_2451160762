@@ -428,3 +428,175 @@ Tính năng xem trước video khi di chuột (Hover Preview) hoạt động m�
 Hiển thị đầy đủ các nút chức năng cạnh Avatar người dùng (Tạo video, Thông báo).
 
 Font size: Tiêu đề video rõ ràng, font size khoảng 16px. Khoảng cách giữa các phần tử (White space) rộng rãi giúp giao diện không bị rối mắt dù có rất nhiều nội dung.
+
+Câu C2:
+
+1. Wireframe Mobile
+
+```text
+   ┌────────────────────┐
+   │ LOGO               │
+   │ ☎ SĐT đặt bàn     │
+   ├────────────────────┤
+   │ HERO IMAGE         │
+   ├────────────────────┤
+   │ FORM ĐẶT BÀN       │
+   │ Ngày               │
+   │ Giờ                │
+   │ Số người           │
+   │ Ghi chú            │
+   │ Button             │
+   ├────────────────────┤
+   │ GRID ẢNH MÓN ĂN    │
+   │ [Ảnh]              │
+   │ [Ảnh]              │
+   │ [Ảnh]              │
+   │ ...                │
+   ├────────────────────┤
+   │ GOOGLE MAPS        │
+   ├────────────────────┤
+   │ FOOTER             │
+   └────────────────────┘
+```
+
+Mobile:
+Ẩn bớt menu nếu có, chỉ giữ logo và số điện thoại. Form đặt bàn nằm ngay dưới Hero để người dùng dễ thao tác. Grid ảnh món ăn hiển thị 1 cột.
+
+2. Wireframe Tablet
+
+```text
+   ┌────────────────────────────┐
+   │ LOGO    ☎ SĐT đặt bàn     │
+   ├────────────────────────────┤
+   │ HERO IMAGE                 │
+   ├────────────────────────────┤
+   │ FORM ĐẶT BÀN               │
+   ├────────────────────────────┤
+   │ GRID ẢNH MÓN ĂN            │
+   │ [Ảnh]       [Ảnh]          │
+   │ [Ảnh]       [Ảnh]          │
+   │ [Ảnh]       [Ảnh]          │
+   ├────────────────────────────┤
+   │ GOOGLE MAPS                │
+   ├────────────────────────────┤
+   │ FOOTER                     │
+   └────────────────────────────┘
+```
+
+Tablet:
+Grid ảnh món ăn hiển thị 2 cột. Form vẫn nằm trên grid ảnh. Bản đồ nằm bên dưới phần ảnh, chiếm toàn chiều ngang.
+
+3. Wireframe Desktop
+
+```text
+   ┌──────────────────────────────────────┐
+   │ LOGO           ☎ SĐT đặt bàn        │
+   ├──────────────────────────────────────┤
+   │ HERO IMAGE                           │
+   ├──────────────────────┬───────────────┤
+   │ GRID ẢNH MÓN ĂN      │ FORM ĐẶT BÀN  │
+   │ [Ảnh][Ảnh][Ảnh]      │ Ngày          │
+   │ [Ảnh][Ảnh][Ảnh]      │ Giờ           │
+   │                      │ Số người      │
+   │                      │ Ghi chú       │
+   ├──────────────────────┴───────────────┤
+   │ GOOGLE MAPS                          │
+   ├──────────────────────────────────────┤
+   │ FOOTER                               │
+   └──────────────────────────────────────┘
+```
+
+Desktop:
+Layout chia 2 cột: bên trái là grid ảnh món ăn, bên phải là form đặt bàn giống sidebar. Grid ảnh hiển thị 3 cột. Không cần sidebar riêng, form đặt bàn đóng vai trò sidebar.
+
+4. CSS Skeleton Mobile-First
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header,
+.hero,
+.gallery,
+.booking-form,
+.map,
+.footer {
+  padding: 16px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.hero {
+  min-height: 300px;
+  background: #ccc;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.food-item {
+  min-height: 160px;
+  background: #ddd;
+}
+
+.booking-form form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.map {
+  min-height: 300px;
+  background: #ccc;
+}
+
+.footer {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .header {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-layout {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .booking-form {
+    position: sticky;
+    top: 20px;
+  }
+}
+```
