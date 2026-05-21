@@ -215,3 +215,7 @@ lỗi 3:
   flex: 1;
 }
 ```
+
+## PHẦN D
+
+link video: https://drive.google.com/file/d/1IUdSVtLXsqwLJJ3qrtn6HlQgA_ooyUrp/view?usp=sharing

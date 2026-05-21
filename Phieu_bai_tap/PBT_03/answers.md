@@ -559,3 +559,7 @@ Giải thích: Thẻ h2 này không có class .highlight hay ID #featured. Do đ
   color: green
 
 Giải thích: Thẻ p này có class .highlight. Quy tắc .highlight { color: green !important; } có mức ưu tiên cao nhất, ép phần tử phải hiển thị màu xanh lá cây.
+
+## PHẦN D:
+
+link video: https://drive.google.com/file/d/1-aJIeCxDrWox4OZTFFtdtYj5BR7ejyLj/view?usp=sharing

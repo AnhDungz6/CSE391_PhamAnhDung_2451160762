@@ -600,3 +600,7 @@ body {
   }
 }
 ```
+
+## PHẦN D
+
+link video: https://drive.google.com/file/d/1y64U3M9zlSjSKIGTcesq590ulJeazjRn/view?usp=sharing
