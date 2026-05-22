@@ -599,4 +599,6 @@ Muốn luyện CSS thuần để hiểu bản chất
 
 Giao diện cần animation hoặc layout phức tạp riêng
 
-.
+## PHẦN D:
+
+link video: https://drive.google.com/file/d/1xTqIUG2xwWSBAbsdAg02eTwAEtb-xLk0/view?usp=sharing

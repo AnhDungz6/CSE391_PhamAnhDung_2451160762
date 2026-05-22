@@ -250,10 +250,16 @@ Giải thích: \d{10,15} từ 10 đến 15 ký số.
 Ví dụ áp dụng trong HTML:
 
 ```html
-<input type="text" pattern="\d{12}" title="CMND/CCCD gồm 12 chữ số" required>
+<input type="text" pattern="\d{12}" title="CMND/CCCD gồm 12 chữ số" required />
 
-<input type="text" pattern="\d{10,15}" title="Số tài khoản từ 10 đến 15 chữ số" required>
+<input
+  type="text"
+  pattern="\d{10,15}"
+  title="Số tài khoản từ 10 đến 15 chữ số"
+  required
+/>
 ```
+
 2. HTML5 validation chưa đủ an toàn cho ứng dụng ngân hàng.
 
 Vì:
