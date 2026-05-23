@@ -15,6 +15,7 @@
   --accent-red: #ef4444;
   --accent-red-hover: #dc2626;
   --accent-purple: #8b5cf6;
+  --accent-yellow: #f59e0b;
   --border-color: rgba(148, 163, 184, 0.15);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
@@ -445,6 +446,8 @@ tbody tr td:last-child {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   animation: modalSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 @keyframes modalSlideIn {
@@ -470,11 +473,15 @@ tbody tr td:last-child {
   background-clip: text;
 }
 
-#formBox input {
+/* ===== Form Group (input + error) ===== */
+.form-group {
+  margin-bottom: 4px;
+}
+
+.form-group input {
   display: block;
   width: 100%;
   padding: 12px 16px;
-  margin-bottom: 14px;
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: var(--text-primary);
@@ -485,13 +492,57 @@ tbody tr td:last-child {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-#formBox input::placeholder {
+.form-group input::placeholder {
   color: rgba(148, 163, 184, 0.5);
 }
 
-#formBox input:focus {
+.form-group input:focus {
   border-color: var(--accent-blue);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== Input Error State ===== */
+.form-group input.input-error {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+  animation: inputShake 0.4s ease;
+}
+
+.form-group input.input-error:focus {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* ===== Input Valid State ===== */
+.form-group input.input-valid {
+  border-color: var(--accent-green);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+@keyframes inputShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+
+/* ===== Error Message ===== */
+.error-msg {
+  display: block;
+  min-height: 22px;
+  padding: 2px 4px 0 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent-red);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.error-msg.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .form-actions {
@@ -546,4 +597,196 @@ tbody tr td:last-child {
 
 #btnClose:active {
   transform: translateY(0);
+}
+
+/* ===== Confirm Dialog ===== */
+#confirmDialog {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+}
+
+#confirmDialog.active {
+  display: flex;
+  animation: overlayFadeIn 0.25s ease-out;
+}
+
+.confirm-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.confirm-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.confirm-box h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.confirm-box p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+#btnConfirmYes {
+  flex: 1;
+  padding: 11px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-red), var(--accent-red-hover));
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+}
+
+#btnConfirmYes:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(239, 68, 68, 0.45);
+}
+
+#btnConfirmNo {
+  flex: 1;
+  padding: 11px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#btnConfirmNo:hover {
+  background: rgba(148, 163, 184, 0.18);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* ===== Toast Notification ===== */
+#toastContainer {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  min-width: 280px;
+  max-width: 400px;
+  border-radius: var(--radius-md);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  animation: toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.toast::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: toastProgress 3s linear forwards;
+}
+
+.toast.toast-success {
+  background: linear-gradient(135deg, #059669, #10b981);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.toast.toast-error {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.toast.toast-warning {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.toast.toast-info {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.toast-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.toast.removing {
+  animation: toastSlideOut 0.35s ease forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+  }
+}
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to { width: 0%; }
 }
