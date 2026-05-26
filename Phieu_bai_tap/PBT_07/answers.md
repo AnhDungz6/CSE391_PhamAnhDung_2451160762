@@ -255,7 +255,7 @@ var html = `
 
 ## PHẦN C
 
-# Câu C1 — Debug JavaScript
+Câu C1
 
 ## Code đã sửa
 
