@@ -295,3 +295,83 @@ copy = { name: "iPhone 16", price: 25990000, specs: <cùng tham chiếu> }
 ```
 
 Khi gán `copy.specs.ram = 16`, ta đang **đột biến trực tiếp object `specs` gốc** — vì `copy.specs` và `product.specs` là cùng một tham chiếu.
+
+## PHẦN C
+
+Câu C1:
+
+Sửa lại code:
+
+```javascript
+const processOrders = (orders) =>
+  orders
+    .filter(({ status, total }) => status === "completed" && total > 100000)
+    .map(({ id, customer, total }) => ({
+      id,
+      customer,
+      total,
+      discount: total * 0.1,
+      finalTotal: total * 0.9,
+    }))
+    .sort((a, b) => b.finalTotal - a.finalTotal);
+```
+
+Câu C2:
+
+```javascript
+const miniArray = {
+  map: (arr, fn) => {
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      result.push(fn(arr[i], i, arr));
+    }
+
+    return result;
+  },
+
+  filter: (arr, fn) => {
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      if (fn(arr[i], i, arr)) {
+        result.push(arr[i]);
+      }
+    }
+
+    return result;
+  },
+
+  reduce: (arr, fn, initialValue) => {
+    let acc;
+    let startIndex;
+
+    if (initialValue !== undefined) {
+      acc = initialValue;
+      startIndex = 0;
+    } else {
+      acc = arr[0];
+      startIndex = 1;
+    }
+
+    for (let i = startIndex; i < arr.length; i++) {
+      acc = fn(acc, arr[i], i, arr);
+    }
+
+    return acc;
+  },
+};
+
+// TEST
+console.log(miniArray.map([1, 2, 3], (x) => x * 2));
+// [2,4,6]
+
+console.log(miniArray.filter([1, 2, 3, 4], (x) => x > 2));
+// [3,4]
+
+console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b, 0));
+// 10
+
+console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b));
+// 10
+```
