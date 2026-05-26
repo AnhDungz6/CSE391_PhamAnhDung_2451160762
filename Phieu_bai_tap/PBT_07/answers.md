@@ -252,3 +252,215 @@ var html = `
 </div>
 `;
 ```
+
+## PHẦN C
+
+# Câu C1 — Debug JavaScript
+
+## Code đã sửa
+
+```javascript
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+  if (phanTramGiam < 0 || phanTramGiam > 100) {
+    return "Phần trăm giảm không hợp lệ";
+  }
+
+  // Lỗi 1 đã sửa: ép kiểu giaBan sang số
+  var giamGia = (Number(giaBan) * phanTramGiam) / 100;
+  let giaSauGiam = Number(giaBan) - giamGia;
+
+  // Lỗi 2 đã sửa: == thay vì =
+  if (giaSauGiam == 0) {
+    console.log("Sản phẩm miễn phí!");
+  }
+
+  return giaSauGiam;
+}
+
+// Lỗi 3 đã sửa: truyền số thay vì chuỗi
+const gia = tinhGiaGiamGia(100000, 20);
+console.log("Giá sau giảm: " + gia + "đ");
+
+// Lỗi 4 đã sửa: 110 -> 10 (hoặc xử lý kết quả trả về là chuỗi lỗi)
+const gia2 = tinhGiaGiamGia(50000, 10);
+console.log("Giá: " + gia2);
+
+// Lỗi 5 đã sửa: var -> let để capture đúng giá trị i
+for (let i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log("Item " + i);
+  }, 1000);
+}
+```
+
+---
+
+## Danh sách lỗi
+
+### Lỗi 1 — Truyền chuỗi thay vì số (dòng `tinhGiaGiamGia("100000", 20)`)
+
+**Vấn đề:** `giaBan` được truyền vào là `"100000"` (string).  
+Khi tính `giaBan * phanTramGiam / 100`, JavaScript tự ép kiểu nên phép nhân vẫn ra đúng, nhưng phép trừ `giaBan - giamGia` sẽ ra kết quả không mong muốn vì `giaBan` vẫn là chuỗi trong một số trường hợp, gây bug khó phát hiện.
+
+**Sửa:** Truyền số `100000` (bỏ dấu nháy), hoặc dùng `Number(giaBan)` bên trong hàm.
+
+---
+
+### Lỗi 2 — Dùng `=` (gán) thay vì `==` (so sánh) (dòng `if (giaSauGiam = 0)`)
+
+**Vấn đề:** `if (giaSauGiam = 0)` gán giá trị `0` vào `giaSauGiam`, luôn trả về `false` → khối `if` không bao giờ chạy, đồng thời **làm hỏng giá trị `giaSauGiam`** trước khi `return`.
+
+**Sửa:** Đổi thành `if (giaSauGiam == 0)` hoặc `=== 0`.
+
+---
+
+### Lỗi 3 — `phanTramGiam = 110` vượt quá 100 (dòng `tinhGiaGiamGia(50000, 110)`)
+
+**Vấn đề:** Hàm kiểm tra `phanTramGiam > 100` và trả về chuỗi lỗi, nhưng đoạn test vẫn truyền `110`. Kết quả `gia2` là một chuỗi `"Phần trăm giảm không hợp lệ"` — nếu sau này dùng `gia2` để tính toán sẽ ra `NaN`.
+
+**Sửa:** Truyền giá trị hợp lệ, ví dụ `tinhGiaGiamGia(50000, 10)`.
+
+---
+
+### Lỗi 4 (ẩn) — Dùng `var i` trong `for` + `setTimeout`
+
+**Vấn đề:**
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log("Item " + i); // luôn in "Item 5"
+  }, 1000);
+}
+```
+
+`var` có **function scope** (không phải block scope), nên tất cả 5 callback của `setTimeout` đều dùng chung **một biến `i` duy nhất**. Khi các callback chạy sau 1 giây, vòng lặp đã kết thúc và `i = 5` rồi → tất cả đều in `"Item 5"`.
+
+**Sửa:** Đổi `var i` thành `let i`. `let` có **block scope**, mỗi lần lặp tạo ra một `i` riêng biệt → in đúng `Item 0`, `Item 1`, ..., `Item 4`.
+
+```javascript
+for (let i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log("Item " + i);
+  }, 1000);
+}
+```
+
+---
+
+### Lỗi 5 — Thiếu dấu chấm phẩy (style / strict mode)
+
+**Vấn đề:** Nhiều dòng thiếu `;` ở cuối. Tuy JavaScript có ASI (Automatic Semicolon Insertion) xử lý được, nhưng trong một số trường hợp (dòng bắt đầu bằng `(`, `[`, `/`) sẽ gây lỗi thực sự.
+
+**Sửa:** Thêm `;` nhất quán cuối mỗi câu lệnh.
+
+---
+
+### Lỗi 6 — Không kiểm tra kiểu đầu vào `giaBan`
+
+**Vấn đề:** Hàm không validate `giaBan`. Nếu truyền vào `null`, `undefined`, hoặc chuỗi không phải số → kết quả là `NaN` mà không có thông báo lỗi.
+
+**Sửa:** Thêm kiểm tra đầu hàm:
+
+```javascript
+if (typeof giaBan !== "number" || isNaN(giaBan) || giaBan < 0) {
+  return "Giá bán không hợp lệ";
+}
+```
+
+---
+
+## Tóm tắt
+
+| #   | Vị trí                           | Lỗi                                     | Mức độ                |
+| --- | -------------------------------- | --------------------------------------- | --------------------- |
+| 1   | Tham số `giaBan`                 | Truyền string `"100000"` thay vì number | Trung bình            |
+| 2   | `if (giaSauGiam = 0)`            | Gán `=` thay vì so sánh `==`            | **Nghiêm trọng**      |
+| 3   | `tinhGiaGiamGia(50000, 110)`     | `phanTramGiam` vượt giới hạn            | Trung bình            |
+| 4   | `for (var i ...)` + `setTimeout` | `var` không có block scope → in sai     | **Ẩn / Nghiêm trọng** |
+| 5   | Toàn file                        | Thiếu dấu `;`                           | Nhẹ                   |
+| 6   | Đầu hàm                          | Không validate `giaBan`                 | Trung bình            |
+
+Câu C2:
+
+```javascript
+// ===== DỮ LIỆU ĐẦU VÀO =====
+const monAn = [
+  { ten: "Phở bò", gia: 65000, soLuong: 2 },
+  { ten: "Trà đá", gia: 5000, soLuong: 3 },
+  { ten: "Bún chả", gia: 55000, soLuong: 1 },
+];
+
+const isWednesday = new Date().getDay() === 3; // true nếu hôm nay là thứ 4 (Wed)
+const coTip = true; // false nếu không tính tip
+
+// ===== TÍNH TOÁN =====
+function tinhHoaDon(monAn, isWednesday, coTip) {
+  const tongCong = monAn.reduce((sum, m) => sum + m.gia * m.soLuong, 0);
+
+  let phanTramGiam = 0;
+  if (tongCong > 1000000) phanTramGiam = 15;
+  else if (tongCong > 500000) phanTramGiam = 10;
+  if (isWednesday) phanTramGiam += 5;
+
+  const soTienGiam = (tongCong * phanTramGiam) / 100;
+  const sauGiam = tongCong - soTienGiam;
+  const vat = sauGiam * 0.08;
+  const tip = coTip ? tongCong * 0.05 : 0;
+  const thanhToan = sauGiam + vat + tip;
+
+  return { tongCong, phanTramGiam, soTienGiam, vat, tip, thanhToan };
+}
+
+// ===== IN HÓA ĐƠN =====
+function formatTien(so) {
+  return so.toLocaleString("vi-VN") + "đ";
+}
+
+function pad(str, width) {
+  return str + " ".repeat(Math.max(0, width - str.length));
+}
+
+function inHoaDon(monAn, isWednesday, coTip) {
+  const { tongCong, phanTramGiam, soTienGiam, vat, tip, thanhToan } =
+    tinhHoaDon(monAn, isWednesday, coTip);
+
+  const W = 44; // chiều rộng bên trong
+  const line = "║" + " ".repeat(W) + "║";
+  const top = "╔" + "═".repeat(W) + "╗";
+  const sep = "╠" + "═".repeat(W) + "╣";
+  const bot = "╚" + "═".repeat(W) + "╝";
+
+  function row(left, right) {
+    const gap = W - left.length - right.length;
+    return "║ " + left + " ".repeat(Math.max(1, gap - 1)) + right + " ║";
+  }
+
+  console.log(top);
+  console.log("║" + pad("        HÓA ĐƠN NHÀ HÀNG", W) + "║");
+  console.log(sep);
+
+  monAn.forEach((m, i) => {
+    const tong = m.gia * m.soLuong;
+    const giaK = m.gia / 1000 + "k";
+    const tongK = tong / 1000 + "k";
+    const left = `${i + 1}. ${pad(m.ten, 12)} x${m.soLuong}  @${giaK}`;
+    console.log(row(left, "= " + tongK));
+  });
+
+  console.log(sep);
+  console.log(row("Tổng cộng:", formatTien(tongCong)));
+  console.log(
+    row(`Giảm giá (${phanTramGiam}%):`, "-" + formatTien(soTienGiam)),
+  );
+  console.log(row("VAT (8%):", "+" + formatTien(vat)));
+  if (coTip) console.log(row("Tip (5%):", "+" + formatTien(tip)));
+  console.log(sep);
+  console.log(row("THANH TOÁN:", formatTien(thanhToan)));
+  console.log(bot);
+
+  if (isWednesday) console.log("\n✓ Thứ 4 — áp dụng giảm thêm 5%");
+}
+
+inHoaDon(monAn, isWednesday, coTip);
+```
