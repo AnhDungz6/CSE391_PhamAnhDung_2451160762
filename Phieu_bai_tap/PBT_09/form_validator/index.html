@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng ký tài khoản</h2>
+        <form id="register-form" novalidate>
+            <!-- Tên -->
+            <div class="form-group">
+                <label for="fullname">
+                    Họ và tên: <span id="name-status"></span>
+                </label>
+                <input type="text" id="fullname" placeholder="Nhập từ 2 - 50 ký tự" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="VD: email@example.com" required>
+                <span class="error" id="email-error"></span>
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" placeholder="Tối thiểu 8 ký tự" required>
+                <div class="strength-meter">
+                    <div id="strength-bar"></div>
+                </div>
+                <div class="strength-text">
+                    Độ mạnh: <span id="strength-label">Chưa nhập</span>
+                </div>
+            </div>
+
+            <!-- Xác nhận mật khẩu -->
+            <div class="form-group">
+                <label for="confirm-password">Xác nhận mật khẩu:</label>
+                <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                <span class="error" id="confirm-password-error"></span>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="form-group">
+                <label for="phone">Số điện thoại:</label>
+                <input type="tel" id="phone" placeholder="VD: 0901-234-567" required>
+                <span class="error" id="phone-error"></span>
+            </div>
+
+            <!-- Nút Submit -->
+            <button type="submit" id="submit-btn" disabled>Đăng ký</button>
+        </form>
+    </div>
+
+    <!-- Modal thông báo thành công -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h3>Đăng ký thành công!</h3>
+            <p><strong>Họ và tên:</strong> <span id="modal-name"></span></p>
+            <p><strong>Email:</strong> <span id="modal-email"></span></p>
+            <p><strong>Số điện thoại:</strong> <span id="modal-phone"></span></p>
+            <button type="button" id="close-modal">Đóng</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

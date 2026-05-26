@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B4 - Keyboard Navigation & Accessibility Gallery</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Screen Reader Live Announcements -->
+  <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1>Keyboard Shortcuts & Accessibility</h1>
+        <p class="subtitle">Trải nghiệm Album Ảnh & Command Palette tương tác hoàn chỉnh bằng bàn phím.</p>
+      </div>
+      <button class="palette-trigger-btn" id="openPaletteBtn" aria-label="Mở Command Palette (Phím tắt: Ctrl + K)" title="Mở Command Palette">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> Command Palette
+      </button>
+    </header>
+
+    <main class="main-content">
+      <!-- Shortcuts Cheat Sheet -->
+      <section class="shortcuts-card" aria-label="Bảng hướng dẫn phím tắt">
+        <h2>Phím tắt hỗ trợ</h2>
+        <div class="shortcuts-grid">
+          <div class="shortcut-item">
+            <span class="keys"><kbd>Ctrl</kbd> + <kbd>K</kbd></span>
+            <span class="action">Mở Command Palette</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="keys"><kbd>1</kbd> - <kbd>9</kbd></span>
+            <span class="action">Nhảy nhanh tới ảnh tương ứng</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="keys"><kbd>←</kbd> <kbd>→</kbd></span>
+            <span class="action">Chuyển ảnh trong chế độ xem (Modal)</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="keys"><kbd>Space</kbd></span>
+            <span class="action">Phát/Tạm dừng slideshow tự động</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="keys"><kbd>Esc</kbd></span>
+            <span class="action">Đóng Modal hoặc Command Palette</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="keys"><kbd>Tab</kbd> / <kbd>Shift + Tab</kbd></span>
+            <span class="action">Di chuyển tiêu điểm (Focus)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Image Gallery Grid -->
+      <section class="gallery-section" aria-label="Thư viện ảnh chính">
+        <h2 class="section-title">Thư viện ảnh</h2>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Images will be inserted here via JS for flexibility, but they are fully interactive -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Thiết kế đáp ứng tiêu chuẩn Accessibility WCAG 2.1 • CSS Focus Ring Visible • Tab Cycle Management</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal Overlay (Hidden by Default) -->
+  <div class="modal-overlay" id="galleryModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+    <div class="modal-container" id="modalContainer">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Đóng hộp thoại xem ảnh (Phím tắt: Escape)">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="modal-image-wrapper">
+        <img class="modal-image" id="modalImage" src="" alt="Hình ảnh xem chi tiết">
+        <div class="modal-nav-arrows">
+          <button class="nav-arrow-btn prev-btn" id="modalPrevBtn" aria-label="Ảnh trước (Phím mũi tên trái)">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="nav-arrow-btn next-btn" id="modalNextBtn" aria-label="Ảnh tiếp theo (Phím mũi tên phải)">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-info">
+          <h3 id="modalTitle">Tiêu đề ảnh</h3>
+          <span class="modal-counter" id="modalCounter">1 / 9</span>
+        </div>
+        
+        <div class="modal-controls">
+          <button class="modal-control-btn play-pause-btn" id="modalPlayBtn" aria-label="Bắt đầu chạy slideshow tự động (Phím tắt: Space)">
+            <svg class="icon-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg class="icon-pause hidden" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+            <span class="btn-text">Slideshow</span>
+          </button>
+        </div>
+
+        <div class="slideshow-progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Overlay (Hidden by Default) -->
+  <div class="palette-overlay" id="commandPalette" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="paletteInput">
+    <div class="palette-container" id="paletteContainer">
+      <div class="palette-header">
+        <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="paletteInput" placeholder="Tìm kiếm tính năng hoặc lệnh (ví dụ: 'Play', 'Theme', 'Ảnh')..." aria-label="Nhập lệnh tìm kiếm" autocomplete="off" aria-autocomplete="list" aria-controls="paletteList">
+        <span class="esc-hint"><kbd>ESC</kbd></span>
+      </div>
+
+      <div class="palette-body">
+        <ul class="palette-list" id="paletteList" role="listbox" aria-label="Danh sách lệnh tìm kiếm">
+          <!-- Command items will be rendered dynamically -->
+        </ul>
+      </div>
+
+      <div class="palette-footer">
+        <span>Sử dụng phím <kbd>↑</kbd> <kbd>↓</kbd> để di chuyển, <kbd>Enter</kbd> để chọn, <kbd>ESC</kbd> để thoát.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toastContainer" class="toast-container" aria-live="assertive"></div>
+
+  <!-- JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>
