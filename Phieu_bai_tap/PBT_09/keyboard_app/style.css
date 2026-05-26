@@ -6,14 +6,13 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #0f172a;
   color: #f8fafc;
   padding: 20px;
   line-height: 1.6;
 }
 
-/* Hỗ trợ Accessibility: Focus ring rõ ràng */
 *:focus-visible {
   outline: 3px solid #3b82f6;
   outline-offset: 2px;
@@ -211,8 +210,12 @@ kbd {
   justify-content: center;
 }
 
-.prev-btn { left: 16px; }
-.next-btn { right: 16px; }
+.prev-btn {
+  left: 16px;
+}
+.next-btn {
+  right: 16px;
+}
 
 .modal-footer {
   padding: 16px;
