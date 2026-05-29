@@ -1,11 +1,13 @@
 // src/components/Skills.jsx
-import { skills as defaultSkills } from '../data/skills';
+import { skills as defaultSkills } from "../data/skills";
 
 function Skills({ skills = defaultSkills }) {
   // Categorize skills
-  const frontendSkills = skills.filter((s) => s.category === 'frontend');
-  const backendSkills = skills.filter((s) => s.category === 'backend');
-  const otherSkills = skills.filter((s) => s.category !== 'frontend' && s.category !== 'backend');
+  const frontendSkills = skills.filter((s) => s.category === "frontend");
+  const backendSkills = skills.filter((s) => s.category === "backend");
+  const otherSkills = skills.filter(
+    (s) => s.category !== "frontend" && s.category !== "backend",
+  );
 
   const renderSkillGroup = (title, groupSkills) => (
     <div className="skills-group">
@@ -18,8 +20,8 @@ function Skills({ skills = defaultSkills }) {
               <span className="skill-level">{skill.level}%</span>
             </div>
             <div className="progress-bar-bg">
-              <div 
-                className="progress-bar-fill" 
+              <div
+                className="progress-bar-fill"
                 style={{ width: `${skill.level}%` }}
               ></div>
             </div>
@@ -38,9 +40,12 @@ function Skills({ skills = defaultSkills }) {
         </div>
 
         <div className="skills-grid">
-          {frontendSkills.length > 0 && renderSkillGroup('Frontend Development', frontendSkills)}
-          {backendSkills.length > 0 && renderSkillGroup('Backend Development', backendSkills)}
-          {otherSkills.length > 0 && renderSkillGroup('Design & Tools', otherSkills)}
+          {frontendSkills.length > 0 &&
+            renderSkillGroup("Frontend Development", frontendSkills)}
+          {backendSkills.length > 0 &&
+            renderSkillGroup("Backend Development", backendSkills)}
+          {otherSkills.length > 0 &&
+            renderSkillGroup("Design & Tools", otherSkills)}
         </div>
       </div>
     </section>
