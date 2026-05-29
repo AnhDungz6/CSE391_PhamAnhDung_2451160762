@@ -201,3 +201,284 @@ element.addEventListener("click", handler, true); // capture phase
 | `e.preventDefault()`           | Hủy hành động mặc định (submit form, follow link...) nhưng **không** dừng bubble |
 
 ---
+
+## PHẦN C
+
+Câu C1:
+
+### Danh sách lỗi và cách sửa
+
+---
+
+### Lỗi 1: `addEventListener("onclick", ...)` — sai tên event
+
+**Dòng:** `document.querySelector("#decrementBtn").addEventListener("onclick", ...)`
+
+- ❌ Sai: `"onclick"` — đây là HTML attribute, không phải DOM event name
+- ✅ Sửa: `"click"`
+
+```js
+// ❌ Sai
+document.querySelector("#decrementBtn").addEventListener("onclick", function() { ... });
+
+// ✅ Đúng
+document.querySelector("#decrementBtn").addEventListener("click", function() { ... });
+```
+
+---
+
+### Lỗi 2: Decrement không lưu history
+
+**Dòng:** Trong handler của `#decrementBtn`, không có code thêm history
+
+- ❌ Sai: Chỉ update `countDisplay` nhưng không thêm `<li>` vào `historyList`
+- ✅ Sửa: Thêm đoạn lưu history giống như increment
+
+```js
+// ✅ Đúng
+document.querySelector("#decrementBtn").addEventListener("click", function () {
+  count--;
+  countDisplay.innerHTML = count;
+
+  const li = document.createElement("li");
+  li.textContent = "Count changed to " + count;
+  li.addEventListener("click", function () {
+    deleteHistory(this);
+  });
+  historyList.append(li);
+});
+```
+
+---
+
+### Lỗi 3: `countDisplay = count` — gán đè biến DOM
+
+**Dòng:** `countDisplay = count;` trong handler của `#resetBtn`
+
+- ❌ Sai: `countDisplay` là một DOM element, không thể gán giá trị số trực tiếp — gán như vậy sẽ phá hủy reference đến element
+- ✅ Sửa: `countDisplay.innerHTML = count;` hoặc `countDisplay.textContent = count;`
+
+```js
+// ❌ Sai
+countDisplay = count;
+
+// ✅ Đúng
+countDisplay.innerHTML = count;
+```
+
+---
+
+### Lỗi 4: `historyList.innerHTML = null` — gán null không hợp lệ
+
+**Dòng:** `historyList.innerHTML = null;`
+
+- ❌ Sai: Gán `null` cho `innerHTML` sẽ render thành chuỗi `"null"` trong một số trình duyệt
+- ✅ Sửa: Gán chuỗi rỗng `""`
+
+```js
+// ❌ Sai
+historyList.innerHTML = null;
+
+// ✅ Đúng
+historyList.innerHTML = "";
+```
+
+---
+
+### Lỗi 5: `item.remove` — thiếu dấu `()` để gọi hàm
+
+**Dòng:** `item.remove;` trong `forEach` của `#clearHistory`
+
+- ❌ Sai: `item.remove` chỉ tham chiếu đến hàm, không gọi nó
+- ✅ Sửa: `item.remove();`
+
+```js
+// ❌ Sai
+items.forEach((item) => {
+  item.remove;
+});
+
+// ✅ Đúng
+items.forEach((item) => {
+  item.remove();
+});
+```
+
+---
+
+### Lỗi 6: `localStorage.getItem("count")` trả về string, không phải number
+
+**Dòng:** `count = localStorage.getItem("count");`
+
+- ❌ Sai: `localStorage` luôn lưu và trả về **string**. Gán thẳng vào `count` (number) sẽ khiến các phép tính sau bị lỗi (e.g. `0 + "5"` = `"05"`)
+- ✅ Sửa: Parse về số với `parseInt()` hoặc `Number()`
+
+```js
+// ❌ Sai
+count = localStorage.getItem("count");
+
+// ✅ Đúng
+count = parseInt(localStorage.getItem("count")) || 0;
+```
+
+---
+
+### Lỗi 7: Load từ localStorage không restore history
+
+**Dòng:** Trong `window.addEventListener("load", ...)` chỉ restore `count`, không restore `historyList`
+
+- ❌ Sai: `historyList.innerHTML` đã được lưu nhưng không được load lại
+- ✅ Sửa: Thêm restore history, và cần re-attach event listener cho các `<li>` đã restore
+
+```js
+// ✅ Đúng
+window.addEventListener("load", () => {
+  count = parseInt(localStorage.getItem("count")) || 0;
+  countDisplay.textContent = count;
+
+  const savedHistory = localStorage.getItem("history");
+  if (savedHistory) {
+    historyList.innerHTML = savedHistory;
+    // Re-attach delete listeners cho các li đã được restore
+    historyList.querySelectorAll("li").forEach((li) => {
+      li.addEventListener("click", function () {
+        deleteHistory(this);
+      });
+    });
+  }
+});
+```
+
+---
+
+Câu C2:
+
+---
+
+Khi viết:
+
+```js
+document.querySelectorAll(".item").forEach((item) => {
+  item.addEventListener("click", handleClick);
+});
+```
+
+Có **3 vấn đề nghiêm trọng**:
+
+#### ❶ Tốn bộ nhớ (Memory)
+
+- Mỗi `addEventListener` tạo ra **1 event listener object** lưu trong bộ nhớ
+- 1000 elements = **1000 listener objects** tồn tại đồng thời trong heap
+- Với app lớn (list dài, nhiều loại event), bộ nhớ bị ăn nhanh → lag, crash trên thiết bị yếu
+
+#### ❷ Elements động không được bind (Dynamic Elements)
+
+```js
+// Các li được bind sẵn
+document.querySelectorAll("li").forEach((li) => {
+  li.addEventListener("click", handleClick);
+});
+
+// Thêm item mới SAU KHI bind → KHÔNG có event listener!
+const newLi = document.createElement("li");
+list.appendChild(newLi); // ← click vào đây sẽ không có gì xảy ra
+```
+
+Mỗi lần thêm element mới phải **bind lại thủ công** → dễ quên, dễ bug.
+
+#### ❸ Chi phí khởi tạo cao
+
+- Khi trang load, JS phải duyệt qua 1000 nodes và gọi `addEventListener` 1000 lần
+- Blocking main thread lâu hơn → **trang load chậm hơn**
+
+---
+
+### Event Delegation giải quyết thế nào?
+
+**Nguyên lý:** Lợi dụng cơ chế **Event Bubbling** — event từ element con sẽ "nổi bọt" (bubble) lên các element cha.
+
+```
+[document]
+    └── [ul#list]           ← Chỉ bind 1 listener ở đây
+            ├── [li] click! → bubble lên ul → listener kích hoạt
+            ├── [li]
+            └── [li]
+```
+
+**Cách implement:**
+
+```js
+// ❌ BAD — 1000 listeners
+document.querySelectorAll(".item").forEach((item) => {
+  item.addEventListener("click", handleClick);
+});
+
+// ✅ GOOD — Event Delegation, chỉ 1 listener
+document.querySelector("#list").addEventListener("click", function (e) {
+  // Kiểm tra xem click có đúng target mong muốn không
+  if (e.target.classList.contains("item")) {
+    handleClick(e.target);
+  }
+});
+```
+
+### Vấn đề của code gốc
+
+```js
+for (let i = 0; i < 1000; i++) {
+  const div = document.createElement("div");
+  div.textContent = `Item ${i}`;
+  document.body.appendChild(div); // ← 1000 lần reflow!
+}
+```
+
+Mỗi lần `appendChild` trực tiếp vào DOM thật:
+
+1. Trình duyệt phải **tính toán lại layout** (reflow) — tính lại vị trí, kích thước của toàn bộ trang
+2. Sau đó **vẽ lại màn hình** (repaint)
+3. Lặp lại **1000 lần** → cực kỳ tốn tài nguyên
+
+```
+Vòng lặp 1: appendChild → REFLOW → REPAINT
+Vòng lặp 2: appendChild → REFLOW → REPAINT
+...
+Vòng lặp 1000: appendChild → REFLOW → REPAINT
+                                ↑
+                        1000 lần reflow!
+```
+
+---
+
+### Refactor dùng DocumentFragment
+
+```js
+// ✅ Tạo một "DOM ảo" tạm thời — không nằm trong document thật
+const fragment = document.createDocumentFragment();
+
+for (let i = 0; i < 1000; i++) {
+  const div = document.createElement("div");
+  div.textContent = `Item ${i}`;
+  fragment.appendChild(div); // ← Thêm vào fragment, KHÔNG gây reflow
+}
+
+// Chỉ 1 lần duy nhất chạm vào DOM thật → chỉ 1 lần reflow!
+document.body.appendChild(fragment);
+```
+
+---
+
+### Tại sao nhanh hơn?
+
+**DocumentFragment** là một **"DOM ảo"** (virtual container) tồn tại trong bộ nhớ, **không được gắn vào document thật**. Vì không thuộc document nên mọi thao tác với nó **không kích hoạt reflow/repaint**.
+
+```
+Fragment (in-memory, không thuộc document):
+    ├── div "Item 0"   ← appendChild, KHÔNG reflow
+    ├── div "Item 1"   ← appendChild, KHÔNG reflow
+    ├── ...
+    └── div "Item 999" ← appendChild, KHÔNG reflow
+
+document.body.appendChild(fragment)
+    → Fragment bị "hòa tan" vào DOM thật
+    → Trình duyệt reflow & repaint DUY NHẤT 1 LẦN
+```
