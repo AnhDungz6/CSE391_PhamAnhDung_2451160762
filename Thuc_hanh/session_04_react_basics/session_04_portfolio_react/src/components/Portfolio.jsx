@@ -10,6 +10,11 @@ function Portfolio() {
 
     const categories = ['all', 'web', 'mobile', 'design'];
 
+    // Filter logic
+    const filteredItems = filter === 'all'
+        ? items
+        : items.filter(item => item.category === filter);
+
     return (
         <section id="portfolio" className="portfolio-section">
             <div className="container">
@@ -28,16 +33,12 @@ function Portfolio() {
                     ))}
                 </div>
 
-                {/* Render list from state */}
+                {/* Render filtered items */}
                 <div className="portfolio-grid">
-                    {items.map(project => (
+                    {filteredItems.map(project => (
                         <ProjectCard
                             key={project.id}
-                            title={project.title}
-                            category={project.category}
-                            image={project.image}
-                            description={project.description}
-                            tags={project.tags}
+                            {...project}
                         />
                     ))}
                 </div>
