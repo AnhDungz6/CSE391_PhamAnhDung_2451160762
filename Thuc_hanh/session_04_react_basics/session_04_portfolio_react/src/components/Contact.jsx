@@ -55,11 +55,29 @@ function Contact() {
     return newErrors;
   };
 
+  // Submit handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // Submit logic here
+    console.log('Form submitted:', formData);
+
+    // Reset form
+    setFormData({ name: '', email: '', message: '' });
+    alert('Message sent successfully!');
+  };
+
   return (
     <section id="contact" className="contact-section">
       <div className="container">
         <h2 className="text-center mb-5">Get In Touch</h2>
-        <form className="contact-form">
+        <form onSubmit={handleSubmit} className="contact-form">
           {/* Name Field */}
           <div className="form-group">
             <label htmlFor="name">Name</label>
