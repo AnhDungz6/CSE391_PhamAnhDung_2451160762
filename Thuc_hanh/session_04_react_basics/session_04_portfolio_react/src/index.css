@@ -28,6 +28,9 @@
   
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --accent-color: var(--primary);
+  --accent-color-light: var(--primary-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -568,29 +571,24 @@ h1, h2, h3, h4 {
 }
 
 .filter-btn {
-  padding: 0.6rem 1.6rem;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  color: var(--text);
-  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--accent-color);
+  background: transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   font-weight: 600;
   font-size: 0.9rem;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
 }
 
 .filter-btn.active {
-  background: var(--primary-gradient);
+  background: var(--accent-color);
   color: white;
-  border-color: transparent;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
 }
 
 .filter-btn:hover:not(.active) {
-  border-color: var(--primary);
+  background: var(--accent-color-light);
   color: var(--primary);
-  transform: translateY(-1px);
 }
 
 .portfolio-grid {

@@ -36,3 +36,21 @@
     border-radius: 20px;
     font-size: 0.75rem;
 }
+
+.filter-btn {
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.filter-btn:hover:not(.active) {
+    background: var(--accent-color-light);
+}
