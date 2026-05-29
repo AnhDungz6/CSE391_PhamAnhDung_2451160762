@@ -1,9 +1,9 @@
-// src/components/Portfolio.jsx
 import { useState } from 'react';
-import { projects } from '../data/skills';
+import { projects } from '../data/projects';
 import ProjectCard from './ProjectCard';
 
 function Portfolio() {
+  // State for projects
   const [items] = useState(projects);
   const [filter, setFilter] = useState('all');
 
