@@ -1,51 +1,33 @@
+// src/components/Portfolio.jsx
 import { useState } from 'react';
 import { projects } from '../data/projects';
 import ProjectCard from './ProjectCard';
 
 function Portfolio() {
-  // State for projects
-  const [items] = useState(projects);
-  const [filter, setFilter] = useState('all');
+    // State for projects
+    const [items] = useState(projects);
 
-  const categories = ['all', 'web', 'mobile', 'design'];
+    return (
+        <section id="portfolio" className="portfolio-section">
+            <div className="container">
+                <h2 className="text-center mb-5">My Portfolio</h2>
 
-  const filteredItems =
-    filter === 'all' ? items : items.filter((item) => item.category === filter);
-
-  return (
-    <section id="portfolio" className="portfolio-section">
-      <div className="container">
-        <div className="section-header">
-          <span className="section-subtitle">My Works</span>
-          <h2 className="section-title">Featured Projects</h2>
-        </div>
-
-        {/* Filter Buttons */}
-        <div className="filter-buttons">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`filter-btn ${filter === category ? 'active' : ''}`}
-              onClick={() => setFilter(category)}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
-          ))}
-        </div>
-
-        {/* Portfolio Grid */}
-        <div className="portfolio-grid">
-          {filteredItems.length > 0 ? (
-            filteredItems.map((project) => (
-              <ProjectCard key={project.id} {...project} />
-            ))
-          ) : (
-            <p className="no-projects">No projects found in this category.</p>
-          )}
-        </div>
-      </div>
-    </section>
-  );
+                {/* Render list from state */}
+                <div className="portfolio-grid">
+                    {items.map(project => (
+                        <ProjectCard
+                            key={project.id}
+                            title={project.title}
+                            category={project.category}
+                            image={project.image}
+                            description={project.description}
+                            tags={project.tags}
+                        />
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
 }
 
 export default Portfolio;

@@ -627,42 +627,31 @@ h1, h2, h3, h4 {
   border-color: hsl(var(--primary-hue), 30%, 75%);
 }
 
-.project-image-container {
+.project-image {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16/11;
 }
 
-.project-img {
+.project-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: var(--transition);
 }
 
-.project-card:hover .project-img {
+.project-card:hover .project-image img {
   transform: scale(1.05);
 }
 
-.project-overlay {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 10;
-}
-
-.project-category-tag {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 50px;
+.project-category {
+  display: inline-block;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--primary);
+  margin-bottom: 0.5rem;
 }
 
 .project-content {
