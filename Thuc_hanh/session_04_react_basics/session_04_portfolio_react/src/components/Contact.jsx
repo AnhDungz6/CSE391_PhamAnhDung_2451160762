@@ -29,11 +29,38 @@ function Contact() {
     }
   };
 
+  // Validation
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Invalid email format';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    return newErrors;
+  };
+
   return (
     <section id="contact" className="contact-section">
       <div className="container">
         <h2 className="text-center mb-5">Get In Touch</h2>
         <form className="contact-form">
+          {/* Name Field */}
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -42,8 +69,12 @@ function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              className={errors.name ? 'error' : ''}
             />
+            {errors.name && <span className="error">{errors.name}</span>}
           </div>
+
+          {/* Email Field */}
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -52,8 +83,12 @@ function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className={errors.email ? 'error' : ''}
             />
+            {errors.email && <span className="error">{errors.email}</span>}
           </div>
+
+          {/* Message Field */}
           <div className="form-group">
             <label htmlFor="message">Message</label>
             <textarea
@@ -62,7 +97,9 @@ function Contact() {
               rows="5"
               value={formData.message}
               onChange={handleChange}
+              className={errors.message ? 'error' : ''}
             />
+            {errors.message && <span className="error">{errors.message}</span>}
           </div>
           <button type="submit" className="submit-btn">Send Message</button>
         </form>
