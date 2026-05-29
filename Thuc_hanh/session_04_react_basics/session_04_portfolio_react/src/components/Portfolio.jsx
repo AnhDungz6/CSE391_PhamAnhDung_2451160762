@@ -6,6 +6,9 @@ import ProjectCard from './ProjectCard';
 function Portfolio() {
     // State for projects
     const [items] = useState(projects);
+    const [filter, setFilter] = useState('all');
+
+    const categories = ['all', 'web', 'mobile', 'design'];
 
     return (
         <section id="portfolio" className="portfolio-section">
