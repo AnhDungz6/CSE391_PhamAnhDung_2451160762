@@ -464,3 +464,7 @@ function inHoaDon(monAn, isWednesday, coTip) {
 
 inHoaDon(monAn, isWednesday, coTip);
 ```
+
+## PHAN D:
+
+link video: https://drive.google.com/file/d/1cCTTJRR4SgZsO6YAwOMXCjhV3g699Er9/view?usp=sharing
