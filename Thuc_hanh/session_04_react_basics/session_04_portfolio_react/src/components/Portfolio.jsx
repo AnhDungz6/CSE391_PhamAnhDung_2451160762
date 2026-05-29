@@ -15,6 +15,19 @@ function Portfolio() {
             <div className="container">
                 <h2 className="text-center mb-5">My Portfolio</h2>
 
+                {/* Filter Buttons */}
+                <div className="filter-buttons">
+                    {categories.map(category => (
+                        <button
+                            key={category}
+                            className={`filter-btn ${filter === category ? 'active' : ''}`}
+                            onClick={() => setFilter(category)}
+                        >
+                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </button>
+                    ))}
+                </div>
+
                 {/* Render list from state */}
                 <div className="portfolio-grid">
                     {items.map(project => (
