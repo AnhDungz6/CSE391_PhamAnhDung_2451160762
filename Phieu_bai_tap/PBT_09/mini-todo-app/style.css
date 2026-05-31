@@ -1,0 +1,27 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 30px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+input {
+  padding: 8px;
+  width: 250px;
+}
+
+button {
+  padding: 8px 12px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}

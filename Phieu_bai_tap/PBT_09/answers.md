@@ -482,3 +482,7 @@ document.body.appendChild(fragment)
     → Fragment bị "hòa tan" vào DOM thật
     → Trình duyệt reflow & repaint DUY NHẤT 1 LẦN
 ```
+
+## PHAN D
+
+link video: https://drive.google.com/file/d/1IMZkDGbzcuhMrLtb8fS9UwZVPtX16ETp/view?usp=sharing
