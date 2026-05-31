@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-API Dashboard - Bảng điều khiển tích hợp</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <div>
+                <h1 class="app-title">Multi-API Dashboard</h1>
+                <p class="app-subtitle">Theo dõi tích hợp dữ liệu thời gian thực từ 3 nguồn API khác nhau</p>
+            </div>
+            <div class="controls-wrapper">
+                <span id="load-duration" class="load-duration">Chưa tải dữ liệu</span>
+                <button id="refresh-btn" class="btn-refresh">
+                    <svg class="refresh-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    Tải lại tất cả
+                </button>
+            </div>
+        </header>
+
+        <!-- Overall Loading Overlay (Fades out when load completes) -->
+        <div id="overall-loading" class="overall-loading-bar" style="display: none;">
+            <div class="loading-progress"></div>
+        </div>
+
+        <!-- Widget Grid Layout -->
+        <main class="dashboard-grid">
+            <!-- Widget 1: Weather Info -->
+            <section class="widget-card" id="widget-0">
+                <div class="widget-header">
+                    <h3 class="widget-title">⛅ Thời tiết Hà Nội</h3>
+                    <span class="api-badge">Open-Meteo</span>
+                </div>
+                <div class="widget-content">
+                    <!-- Dynamic state content -->
+                </div>
+            </section>
+
+            <!-- Widget 2: Dog Image -->
+            <section class="widget-card" id="widget-1">
+                <div class="widget-header">
+                    <h3 class="widget-title">🐶 Cún cưng ngẫu nhiên</h3>
+                    <span class="api-badge">Dog API</span>
+                </div>
+                <div class="widget-content">
+                    <!-- Dynamic state content -->
+                </div>
+            </section>
+
+            <!-- Widget 3: Country Info -->
+            <section class="widget-card" id="widget-2">
+                <div class="widget-header">
+                    <h3 class="widget-title">🇻🇳 Quốc gia: Việt Nam</h3>
+                    <span class="api-badge">REST Countries</span>
+                </div>
+                <div class="widget-content">
+                    <!-- Dynamic state content -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

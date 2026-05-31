@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Dự báo thời tiết</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">Weather App</h1>
+            <p class="app-subtitle">Tra cứu thời tiết thời gian thực</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Nhập tên thành phố (vd: Hanoi, Tokyo...)" autofocus>
+            <button id="search-btn" class="btn-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Tìm
+            </button>
+        </div>
+
+        <!-- History Section -->
+        <div class="history-container" id="history-container" style="display: none;">
+            <span class="history-label">Lịch sử tìm kiếm:</span>
+            <div class="history-tags" id="history-tags">
+                <!-- Tags will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Weather Status Containers -->
+        <main class="weather-display">
+            <!-- 1. LOADING STATE -->
+            <div id="state-loading" class="state-container" style="display: none;">
+                <div class="spinner"></div>
+                <p class="state-message">Đang tải...</p>
+            </div>
+
+            <!-- 2. ERROR STATE -->
+            <div id="state-error" class="state-container error-card" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <h3 class="error-title">Đã xảy ra lỗi</h3>
+                <p id="error-message" class="state-message">Thành phố không tồn tại hoặc lỗi kết nối.</p>
+            </div>
+
+            <!-- 3. SUCCESS STATE -->
+            <div id="state-success" class="state-container success-card" style="display: none;">
+                <div class="weather-main-info">
+                    <h2 id="weather-city" class="weather-city">Hanoi</h2>
+                    <p id="weather-date" class="weather-date">Hôm nay</p>
+                </div>
+
+                <div class="weather-detail-grid">
+                    <div class="weather-hero">
+                        <div class="icon-wrapper">
+                            <img id="weather-icon" src="" alt="Weather Icon" class="weather-icon">
+                            <span id="weather-emoji" class="weather-emoji">☀️</span>
+                        </div>
+                        <div class="temp-container">
+                            <span id="weather-temp" class="weather-temp">--</span><span class="temp-unit">°C</span>
+                        </div>
+                        <div id="weather-desc" class="weather-desc">Mây rải rác</div>
+                    </div>
+
+                    <div class="weather-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">💧</div>
+                            <div class="stat-data">
+                                <span class="stat-label">Độ ẩm</span>
+                                <span id="weather-humidity" class="stat-value">--%</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">💨</div>
+                            <div class="stat-data">
+                                <span class="stat-label">Tốc độ gió</span>
+                                <span id="weather-wind" class="stat-value">-- km/h</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Initial Idle State -->
+            <div id="state-idle" class="state-container idle-card">
+                <div class="idle-icon">🌤️</div>
+                <p class="state-message">Nhập tên thành phố bằng tiếng Anh để tra cứu thông tin thời tiết.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

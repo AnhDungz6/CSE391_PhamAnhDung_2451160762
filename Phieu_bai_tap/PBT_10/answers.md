@@ -135,3 +135,206 @@ async function getUserData(userId) {
 ```
 
 Code phẳng, xử lý lỗi 1 chỗ duy nhất.
+
+# PHẦN C
+
+---
+
+## Câu C1 (10đ) — Error Handling Strategy
+
+### 1. Network Errors (mất mạng giữa chừng)
+
+`fetch()` tự throw khi mất kết nối → dùng `try/catch` bắt.
+
+```js
+try {
+  const response = await fetch("/api/products");
+} catch (error) {
+  // error.name === "TypeError" khi mất mạng
+  console.error("Mất kết nối:", error.message);
+  showToast("Không có mạng. Vui lòng kiểm tra kết nối.");
+}
+```
+
+---
+
+### 2. API Errors (xử lý từng loại)
+
+```js
+async function handleApiErrors(response) {
+  if (response.ok) return response;
+
+  switch (response.status) {
+    case 404:
+      throw new Error("Không tìm thấy sản phẩm.");
+    case 429:
+      // Too Many Requests — đợi rồi thử lại
+      const retryAfter = response.headers.get("Retry-After") || 5;
+      await new Promise((r) => setTimeout(r, retryAfter * 1000));
+      throw new Error("Quá nhiều request. Đang thử lại...");
+    case 500:
+      throw new Error("Lỗi server. Vui lòng thử lại sau.");
+    default:
+      throw new Error(`Lỗi HTTP: ${response.status}`);
+  }
+}
+```
+
+---
+
+### 3. Timeout — `fetchWithTimeout(url, ms)`
+
+```js
+async function fetchWithTimeout(url, ms = 10000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), ms);
+
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    return response;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error(`Request timeout sau ${ms}ms`);
+    }
+    throw error;
+  }
+}
+
+// Dùng:
+const response = await fetchWithTimeout("/api/orders", 10000);
+```
+
+**Giải thích:** `AbortController` tạo signal để hủy fetch. Sau `ms` milliseconds, `setTimeout` gọi `abort()` → fetch bị hủy → catch bắt `AbortError`.
+
+---
+
+### 4. Retry Logic — `fetchWithRetry(url, maxRetries)`
+
+```js
+async function fetchWithRetry(url, maxRetries = 3) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetchWithTimeout(url, 10000);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response;
+    } catch (error) {
+      lastError = error;
+      console.warn(`Lần thử ${attempt}/${maxRetries} thất bại:`, error.message);
+
+      if (attempt < maxRetries) {
+        // Exponential backoff: 1s, 2s, 4s
+        await new Promise((r) => setTimeout(r, 1000 * 2 ** (attempt - 1)));
+      }
+    }
+  }
+
+  throw new Error(`Thất bại sau ${maxRetries} lần: ${lastError.message}`);
+}
+
+// Dùng:
+try {
+  const response = await fetchWithRetry("/api/cart");
+  const data = await response.json();
+} catch (error) {
+  showToast("Không thể kết nối. Vui lòng thử lại sau.");
+}
+```
+
+**Giải thích:** Mỗi lần thất bại đợi lâu hơn (1s → 2s → 4s) — gọi là **exponential backoff** — tránh spam server liên tục.
+
+---
+
+## Câu C2 (10đ) — Promise.all vs allSettled vs race vs any
+
+### Bảng so sánh:
+
+| Method          | Khi nào resolve?                      | Khi nào reject?             | Use case                                          |
+| --------------- | ------------------------------------- | --------------------------- | ------------------------------------------------- |
+| `.all()`        | Khi **tất cả** resolve                | Ngay khi **1 cái** reject   | Các request phụ thuộc nhau, cần đủ hết            |
+| `.allSettled()` | Khi **tất cả** hoàn thành (kể cả lỗi) | **Không bao giờ** reject    | Gọi nhiều API độc lập, muốn biết từng cái thế nào |
+| `.race()`       | Khi **cái đầu tiên** resolve          | Khi **cái đầu tiên** reject | Timeout, fallback server                          |
+| `.any()`        | Khi **1 cái** resolve                 | Khi **tất cả** reject       | Thử nhiều nguồn, lấy cái nhanh nhất thành công    |
+
+---
+
+### Ví dụ thực tế:
+
+**`Promise.all()` — Tải trang chi tiết sản phẩm (cần đủ hết mới hiển thị)**
+
+```js
+async function loadProductPage(productId) {
+  // Cần cả 3: thiếu 1 cái không hiển thị được trang
+  const [product, reviews, inventory] = await Promise.all([
+    fetch(`/api/products/${productId}`).then((r) => r.json()),
+    fetch(`/api/reviews/${productId}`).then((r) => r.json()),
+    fetch(`/api/inventory/${productId}`).then((r) => r.json()),
+  ]);
+
+  renderProductPage(product, reviews, inventory);
+}
+```
+
+---
+
+**`Promise.allSettled()` — Gửi thông báo đến nhiều kênh (không cần tất cả thành công)**
+
+```js
+async function sendOrderNotification(orderId) {
+  const results = await Promise.allSettled([
+    sendEmail(orderId),
+    sendSMS(orderId),
+    sendPushNotification(orderId),
+  ]);
+
+  results.forEach((result, i) => {
+    const channel = ["Email", "SMS", "Push"][i];
+    if (result.status === "fulfilled") {
+      console.log(`${channel}: Gửi thành công`);
+    } else {
+      console.warn(`${channel}: Thất bại —`, result.reason.message);
+    }
+  });
+}
+```
+
+---
+
+**`Promise.race()` — Timeout cho API chậm**
+
+```js
+async function fetchWithRaceTimeout(url, ms = 5000) {
+  const fetchPromise = fetch(url).then((r) => r.json());
+  const timeoutPromise = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error("Timeout!")), ms),
+  );
+
+  // Cái nào xong trước thì thắng
+  return Promise.race([fetchPromise, timeoutPromise]);
+}
+
+const data = await fetchWithRaceTimeout("/api/recommendations", 5000);
+```
+
+---
+
+**`Promise.any()` — Gọi nhiều CDN, lấy cái phản hồi nhanh nhất**
+
+```js
+async function fetchFromFastestCDN(path) {
+  const cdnUrls = [
+    `https://cdn1.example.com/${path}`,
+    `https://cdn2.example.com/${path}`,
+    `https://cdn3.example.com/${path}`,
+  ];
+
+  // Lấy response đầu tiên thành công, bỏ qua các CDN lỗi
+  const response = await Promise.any(cdnUrls.map((url) => fetch(url)));
+
+  return response.json();
+}
+```
+
+---

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scroll Gallery - Thư viện ảnh vô tận</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">Infinite Photo Gallery</h1>
+            <p class="app-subtitle">Khám phá kho nhiếp ảnh nghệ thuật chất lượng cao</p>
+        </header>
+
+        <!-- Gallery Grid -->
+        <main class="gallery-grid" id="gallery-grid">
+            <!-- Images will be dynamically rendered here -->
+        </main>
+
+        <!-- Scroll Trigger and Loader Indicator -->
+        <div id="load-trigger" class="load-trigger">
+            <div class="spinner"></div>
+            <span>Đang tải thêm ảnh...</span>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightbox-modal">
+        <button class="lightbox-close" id="lightbox-close-btn">&times;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Lightbox View">
+            <div class="lightbox-caption">
+                <span id="lightbox-author" class="lightbox-author">--</span>
+                <a id="lightbox-download-link" href="#" target="_blank" download class="lightbox-download-btn">
+                    Tải về ảnh gốc
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
