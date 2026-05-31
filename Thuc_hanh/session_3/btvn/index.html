@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập về nhà: Form Validation & CRUD</title>
+    <!-- Modern font from Google Fonts -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo-area">
+          <h1>Hệ thống Quản lý Sinh viên</h1>
+          <p class="subtitle">Bài tập về nhà: Form Validation & DOM Manipulation</p>
+        </div>
+        <button id="btnAdd" class="btn-primary">
+          <span class="btn-icon">+</span> Thêm sinh viên
+        </button>
+      </header>
+
+      <!-- ===== Statistics Dashboard ===== -->
+      <section id="statistics">
+        <div class="stat-box count-box">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <span class="stat-label">Tổng sinh viên</span>
+            <span class="stat-value" id="totalCount">0</span>
+          </div>
+        </div>
+        <div class="stat-box avg-box">
+          <div class="stat-icon">📈</div>
+          <div class="stat-info">
+            <span class="stat-label">Điểm TB Lớp</span>
+            <span class="stat-value" id="avgScore">0.00</span>
+          </div>
+        </div>
+        <div class="stat-box grading-box">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-info">
+            <span class="stat-label">Học lực Giỏi / Xuất sắc</span>
+            <span class="stat-value" id="excellentCount">0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Main Data Table ===== -->
+      <main class="table-container">
+        <table id="studentTable">
+          <thead>
+            <tr>
+              <th>MSSV</th>
+              <th>Họ Tên</th>
+              <th>Ngày sinh</th>
+              <th>Lớp</th>
+              <th>GPA</th>
+              <th>Email</th>
+              <th class="actions-header">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody">
+            <!-- Rendered dynamically by main.js -->
+          </tbody>
+        </table>
+        <div id="noDataMessage" class="no-data-msg hidden">
+          <div class="no-data-icon">🗂️</div>
+          <p>Không có dữ liệu sinh viên. Hãy bấm "Thêm sinh viên" để tạo mới.</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== Modal Popup Form ===== -->
+    <div id="popup" class="modal-overlay">
+      <div id="formBox" class="modal-box">
+        <div class="modal-header">
+          <h2 id="formTitle">Thêm sinh viên mới</h2>
+          <button id="btnCloseTop" class="btn-close-x">&times;</button>
+        </div>
+        
+        <form id="studentForm" novalidate>
+          <div class="form-grid">
+            <!-- MSSV -->
+            <div class="form-group">
+              <label for="maSV">Mã sinh viên <span class="required">*</span></label>
+              <input id="maSV" type="text" placeholder="Ví dụ: 2451160762" autocomplete="off" />
+              <span class="error-msg" id="errMaSV"></span>
+            </div>
+
+            <!-- Họ tên -->
+            <div class="form-group">
+              <label for="hoTen">Họ và tên <span class="required">*</span></label>
+              <input id="hoTen" type="text" placeholder="Ví dụ: Phạm Anh Dũng" autocomplete="off" />
+              <span class="error-msg" id="errHoTen"></span>
+            </div>
+
+            <!-- Ngày sinh -->
+            <div class="form-group">
+              <label for="ngaySinh">Ngày sinh <span class="required">*</span></label>
+              <input id="ngaySinh" type="date" />
+              <span class="error-msg" id="errNgaySinh"></span>
+            </div>
+
+            <!-- Lớp -->
+            <div class="form-group">
+              <label for="lop">Lớp <span class="required">*</span></label>
+              <input id="lop" type="text" placeholder="Ví dụ: A1, K65-CS" autocomplete="off" />
+              <span class="error-msg" id="errLop"></span>
+            </div>
+
+            <!-- GPA -->
+            <div class="form-group">
+              <label for="diemTB">Điểm trung bình (GPA) <span class="required">*</span></label>
+              <input id="diemTB" type="number" step="0.1" min="0" max="10" placeholder="Từ 0.0 đến 10.0" autocomplete="off" />
+              <span class="error-msg" id="errDiemTB"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input id="email" type="email" placeholder="Ví dụ: abc@gmail.com" autocomplete="off" />
+              <span class="error-msg" id="errEmail"></span>
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+              <label for="matKhau">Mật khẩu <span class="required">*</span></label>
+              <input id="matKhau" type="password" placeholder="Tối thiểu 6 ký tự" autocomplete="off" />
+              <span class="error-msg" id="errMatKhau"></span>
+            </div>
+
+            <!-- Xác nhận mật khẩu -->
+            <div class="form-group">
+              <label for="confirmMatKhau">Xác nhận mật khẩu <span class="required">*</span></label>
+              <input id="confirmMatKhau" type="password" placeholder="Nhập lại mật khẩu" autocomplete="off" />
+              <span class="error-msg" id="errConfirmMatKhau"></span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btnSave" class="btn-success">Lưu thông tin</button>
+            <button type="button" id="btnClose" class="btn-cancel">Hủy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== Confirm Dialog ===== -->
+    <div id="confirmDialog" class="modal-overlay">
+      <div class="confirm-box">
+        <div class="confirm-icon">⚠️</div>
+        <h3>Xác nhận xóa</h3>
+        <p id="confirmMsg">Bạn có chắc chắn muốn xóa sinh viên này không?</p>
+        <div class="confirm-actions">
+          <button id="btnConfirmYes" class="btn-danger">Xóa sinh viên</button>
+          <button id="btnConfirmNo" class="btn-cancel">Hủy bỏ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Toast Notification ===== -->
+    <div id="toastContainer"></div>
+
+    <!-- JavaScript logic -->
+    <script src="main.js"></script>
+  </body>
+</html>
