@@ -375,3 +375,7 @@ console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b, 0));
 console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b));
 // 10
 ```
+
+## PHAN D:
+
+link video: https://drive.google.com/file/d/1wUD50-2V-lfeRKFxHMuGIQsBbhP1_gNb/view?usp=sharing
